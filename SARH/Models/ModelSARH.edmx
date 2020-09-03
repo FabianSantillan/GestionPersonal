@@ -1,0 +1,1982 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SARHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CATAAños">
+          <Key>
+            <PropertyRef Name="idCATAAños" />
+          </Key>
+          <Property Name="idCATAAños" Type="int" Nullable="false" />
+          <Property Name="año" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATAAreasEstructural">
+          <Key>
+            <PropertyRef Name="idCATAAreasEstructural" />
+          </Key>
+          <Property Name="idCATAAreasEstructural" Type="smallint" Nullable="false" />
+          <Property Name="DG_Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DG_Iniciales" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ClaveAreaEstructural" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="idCATAEstatus" Type="tinyint" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CATAAreasFuncional">
+          <Key>
+            <PropertyRef Name="idCATAAreasFuncional" />
+          </Key>
+          <Property Name="idCATAAreasFuncional" Type="smallint" Nullable="false" />
+          <Property Name="DG_Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DG_Iniciales" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="idCATAEstatus" Type="tinyint" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CATACarreras">
+          <Key>
+            <PropertyRef Name="idCATACarreras" />
+          </Key>
+          <Property Name="idCATACarreras" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionCarrera" Type="nvarchar" MaxLength="300" />
+          <Property Name="idCATAEstatus" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATACategoria">
+          <Key>
+            <PropertyRef Name="idCATACategoria" />
+          </Key>
+          <Property Name="idCATACategoria" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionCategoria" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="idCATATipoPlazaNuevo" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATACodigosPlaza">
+          <Key>
+            <PropertyRef Name="idCATACodigosPlaza" />
+          </Key>
+          <Property Name="idCATACodigosPlaza" Type="smallint" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="NivelPlaza" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="SueldoBase" Type="smallmoney" Nullable="false" />
+          <Property Name="Compensacion" Type="smallmoney" Nullable="false" />
+          <Property Name="idFiltroPuestoClave" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SueldoBruto" Type="smallmoney" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SARH.dbo.CATADirecionesArea' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CATADirecionesArea">
+          <Key>
+            <PropertyRef Name="idDireccionArea" />
+            <PropertyRef Name="DA_Nombre" />
+            <PropertyRef Name="DA_Iniciales" />
+            <PropertyRef Name="idCATAAreasFuncional" />
+            <PropertyRef Name="Estatus" />
+            <PropertyRef Name="FechaAlta" />
+            <PropertyRef Name="FechaBaja" />
+          </Key>
+          <Property Name="idDireccionArea" Type="int" Nullable="false" />
+          <Property Name="DA_Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DA_Iniciales" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idCATAAreasFuncional" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="tinyint" Nullable="false" />
+          <Property Name="FechaAlta" Type="date" Nullable="false" />
+          <Property Name="FechaBaja" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATAEstatus">
+          <Key>
+            <PropertyRef Name="idCATAEstatus" />
+          </Key>
+          <Property Name="idCATAEstatus" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionEstatus" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATAEstatusPlaza">
+          <Key>
+            <PropertyRef Name="idCATAEstatusPlaza" />
+          </Key>
+          <Property Name="idCATAEstatusPlaza" Type="tinyint" Nullable="false" />
+          <Property Name="Estatus" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATAMotivoBaja">
+          <Key>
+            <PropertyRef Name="idCATAMotivoBaja" />
+          </Key>
+          <Property Name="idCATAMotivoBaja" Type="tinyint" Nullable="false" />
+          <Property Name="MotivoBaja" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATAMovimientos">
+          <Key>
+            <PropertyRef Name="idTipoMovimiento" />
+          </Key>
+          <Property Name="idTipoMovimiento" Type="smallint" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SARH.dbo.CATANivelEstudios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CATANivelEstudios">
+          <Key>
+            <PropertyRef Name="idCATANivelEstudios" />
+            <PropertyRef Name="Nivel" />
+            <PropertyRef Name="ControlRegistroHistorial" />
+            <PropertyRef Name="Orden" />
+            <PropertyRef Name="ExigeFechaFin" />
+          </Key>
+          <Property Name="idCATANivelEstudios" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nivel" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="ControlRegistroHistorial" Type="tinyint" Nullable="false" />
+          <Property Name="Orden" Type="tinyint" Nullable="false" />
+          <Property Name="ExigeFechaFin" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATANivelPuesto">
+          <Key>
+            <PropertyRef Name="idCATANivelPuesto" />
+          </Key>
+          <Property Name="idCATANivelPuesto" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionNivelPuesto" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="idCATACategoria" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATANombreEscuela">
+          <Key>
+            <PropertyRef Name="idCATANombreEscuela" />
+          </Key>
+          <Property Name="idCATANombreEscuela" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionNombreEscuela" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="CATAParents">
+          <Key>
+            <PropertyRef Name="idCATAParents" />
+          </Key>
+          <Property Name="idCATAParents" Type="tinyint" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CATAPuestos">
+          <Key>
+            <PropertyRef Name="idCATAPuestos" />
+          </Key>
+          <Property Name="idCATAPuestos" Type="smallint" Nullable="false" />
+          <Property Name="NombrePuesto" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="idCATANivelPuesto" Type="tinyint" />
+          <Property Name="DescripcionPuesto" Type="nvarchar(max)" />
+          <Property Name="idCATATipoNivelPuesto" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="CATASituacionAcademica">
+          <Key>
+            <PropertyRef Name="idCATASituacionAcademica" />
+          </Key>
+          <Property Name="idCATASituacionAcademica" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionSituacionAcademica" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="CATATipoCorreo">
+          <Key>
+            <PropertyRef Name="idCATATipoCorreo" />
+          </Key>
+          <Property Name="idCATATipoCorreo" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionTipoCorreo" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATATipoModulo">
+          <Key>
+            <PropertyRef Name="idCATATipoModulo" />
+          </Key>
+          <Property Name="idCATATipoModulo" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionTipoModulo" Type="nvarchar" MaxLength="150" />
+          <Property Name="idCATAEstatus" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATATipoMovimientoBitacora">
+          <Key>
+            <PropertyRef Name="idCATATipoMovimientoBitacora" />
+          </Key>
+          <Property Name="idCATATipoMovimientoBitacora" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionTipoMovBitacora" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="CATATipoNivelPuesto">
+          <Key>
+            <PropertyRef Name="idCATATipoNivelPuesto" />
+          </Key>
+          <Property Name="idCATATipoNivelPuesto" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionNivelPuesto" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="CATATipoPlaza">
+          <Key>
+            <PropertyRef Name="idCATATipoPlaza" />
+          </Key>
+          <Property Name="idCATATipoPlaza" Type="tinyint" Nullable="false" />
+          <Property Name="TipoPlaza" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATATipoPlazaNuevo">
+          <Key>
+            <PropertyRef Name="idCATATipoPlazaNuevo" />
+          </Key>
+          <Property Name="idCATATipoPlazaNuevo" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionTipoPlazaN" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATATipoTelefono">
+          <Key>
+            <PropertyRef Name="idCATATipoTelefono" />
+          </Key>
+          <Property Name="idCATATipoTelefono" Type="tinyint" Nullable="false" />
+          <Property Name="DescripcionTipoTelefono" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Correos">
+          <Key>
+            <PropertyRef Name="idCorreo" />
+          </Key>
+          <Property Name="idCorreo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPersonal" Type="int" Nullable="false" />
+          <Property Name="idCATATipoCorreo" Type="tinyint" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idCATAEstatus" Type="tinyint" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DatosCredencialInstitucional">
+          <Key>
+            <PropertyRef Name="idDatosCredencialInstitucional" />
+          </Key>
+          <Property Name="idDatosCredencialInstitucional" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPersonal" Type="int" Nullable="false" />
+          <Property Name="NoGafete" Type="int" Nullable="false" />
+          <Property Name="idCATAPuestos" Type="smallint" Nullable="false" />
+          <Property Name="idCATAAñoVigencia" Type="int" Nullable="false" />
+          <Property Name="CodigoAcceso" Type="int" Nullable="false" />
+          <Property Name="TieneResello" Type="bit" Nullable="false" />
+          <Property Name="idCATAAñoResello" Type="int" />
+          <Property Name="idCATAEstatusCredencial" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SARH.dbo.HistorialAcademico' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="HistorialAcademico">
+          <Key>
+            <PropertyRef Name="idHistorialAcademico" />
+            <PropertyRef Name="idPersonal" />
+            <PropertyRef Name="idCATANivelEstudios" />
+          </Key>
+          <Property Name="idHistorialAcademico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPersonal" Type="int" Nullable="false" />
+          <Property Name="idCATANivelEstudios" Type="smallint" Nullable="false" />
+          <Property Name="idCATACarreras" Type="smallint" />
+          <Property Name="FechaInicio" Type="date" />
+          <Property Name="FechaConcluye" Type="date" />
+          <Property Name="fechaRegistro" Type="date" />
+          <Property Name="cedula" Type="varchar" MaxLength="20" />
+          <Property Name="idCATANombreEscuela" Type="tinyint" />
+          <Property Name="idCATASituacionAcademica" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="HistorialAltasBajasPersonas">
+          <Key>
+            <PropertyRef Name="idHistorialAltasBajasPersonas" />
+          </Key>
+          <Property Name="idHistorialAltasBajasPersonas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPersonal" Type="int" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" Nullable="false" />
+          <Property Name="idCATAEstatusRegistro" Type="tinyint" Nullable="false" />
+          <Property Name="idCATAMotivoBaja" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialPerPlazas">
+          <Key>
+            <PropertyRef Name="idHistorialPerPlazas" />
+          </Key>
+          <Property Name="idHistorialPerPlazas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPersonal" Type="int" Nullable="false" />
+          <Property Name="idPlazas" Type="int" Nullable="false" />
+          <Property Name="fechaAsignacionPlaza" Type="date" Nullable="false" />
+          <Property Name="idCATAAreasFuncionales" Type="smallint" Nullable="false" />
+          <Property Name="idTipoMovimiento" Type="smallint" Nullable="false" />
+          <Property Name="CargoFuncional" Type="nvarchar" MaxLength="300" />
+          <Property Name="Funciones" Type="nvarchar(max)" />
+          <Property Name="fechaRegistro" Type="date" Nullable="false" />
+          <Property Name="estatusHistorialPerPlazasActual" Type="int" Nullable="false" />
+          <Property Name="FechaDesasignacion" Type="datetime" />
+          <Property Name="idDireccionArea" Type="int" />
+        </EntityType>
+        <EntityType Name="NumeroContacto">
+          <Key>
+            <PropertyRef Name="idNumeroContacto" />
+          </Key>
+          <Property Name="idNumeroContacto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPersonal" Type="int" Nullable="false" />
+          <Property Name="NumeroTelefonico" Type="int" Nullable="false" />
+          <Property Name="idCataTipoTelefono" Type="tinyint" Nullable="false" />
+          <Property Name="idCATAEstatus" Type="tinyint" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PermisosModulo">
+          <Key>
+            <PropertyRef Name="idPermisosModulo" />
+          </Key>
+          <Property Name="idPermisosModulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPersonal" Type="int" Nullable="false" />
+          <Property Name="TipoAccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idCATATipoModulo" Type="tinyint" Nullable="false" />
+          <Property Name="idCATAEstatus" Type="tinyint" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="idPersonal" />
+          </Key>
+          <Property Name="idPersonal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apellidoPaterno" Type="varchar" MaxLength="200" />
+          <Property Name="ApellidoMaterno" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nombreCompleto" Type="nvarchar" MaxLength="800" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="RFC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Homoclave" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CURP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="1" StoreGeneratedPattern="Computed" />
+          <Property Name="fechaIngresoInstitucion" Type="date" Nullable="false" />
+          <Property Name="idCATAEstatus" Type="tinyint" Nullable="false" />
+          <Property Name="Fotografia" Type="image" />
+          <Property Name="fechaRegistro" Type="date" />
+          <Property Name="idCATAParents" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="PersonalNew">
+          <Key>
+            <PropertyRef Name="idPersonaNew" />
+          </Key>
+          <Property Name="idPersonaNew" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apellidoPaterno" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="apellidoMaterno" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nombreCompleto" Type="varchar" MaxLength="800" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plazas">
+          <Key>
+            <PropertyRef Name="idPlazas" />
+          </Key>
+          <Property Name="idPlazas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroPlaza" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idCATAPuestos" Type="smallint" Nullable="false" />
+          <Property Name="idCATACodigosPlaza" Type="smallint" Nullable="false" />
+          <Property Name="CargoEstructura" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="ClavePresupuestal" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="idCATAEstatusPlaza" Type="tinyint" Nullable="false" />
+          <Property Name="fechaRegistro" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SARH.dbo.V_DetallePersonal' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="V_DetallePersonal">
+          <Key>
+            <PropertyRef Name="Nombre Completo" />
+            <PropertyRef Name="Fecha de Nacimiento" />
+            <PropertyRef Name="RFC" />
+            <PropertyRef Name="Homoclave" />
+            <PropertyRef Name="CURP" />
+            <PropertyRef Name="Fecha Ingreso Institución" />
+          </Key>
+          <Property Name="Nombre Completo" Type="nvarchar" MaxLength="800" Nullable="false" />
+          <Property Name="Fecha de Nacimiento" Type="date" Nullable="false" />
+          <Property Name="RFC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Homoclave" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CURP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="1" />
+          <Property Name="Fecha Ingreso Institución" Type="date" Nullable="false" />
+          <Property Name="Fecha Registro" Type="date" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SARH.dbo.V_PlazasVacantes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="V_PlazasVacantes">
+          <Key>
+            <PropertyRef Name="numeroPlaza" />
+            <PropertyRef Name="idCATAPuestos" />
+            <PropertyRef Name="NombrePuesto" />
+            <PropertyRef Name="idCATACodigosPlaza" />
+            <PropertyRef Name="descripcion" />
+            <PropertyRef Name="NivelPlaza" />
+            <PropertyRef Name="SueldoBase" />
+            <PropertyRef Name="Compensacion" />
+            <PropertyRef Name="CargoEstructura" />
+            <PropertyRef Name="ClavePresupuestal" />
+            <PropertyRef Name="idCATAEstatusPlaza" />
+            <PropertyRef Name="Estatus" />
+            <PropertyRef Name="fechaRegistro" />
+          </Key>
+          <Property Name="numeroPlaza" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idCATAPuestos" Type="smallint" Nullable="false" />
+          <Property Name="NombrePuesto" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="idCATACodigosPlaza" Type="smallint" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="NivelPlaza" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="SueldoBase" Type="smallmoney" Nullable="false" />
+          <Property Name="Compensacion" Type="smallmoney" Nullable="false" />
+          <Property Name="SueldoBruto" Type="smallmoney" />
+          <Property Name="CargoEstructura" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="ClavePresupuestal" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="idCATAEstatusPlaza" Type="tinyint" Nullable="false" />
+          <Property Name="Estatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaRegistro" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CATAAreasEstructurales_idCATAEstatus">
+          <End Role="CATAEstatus" Type="Self.CATAEstatus" Multiplicity="1" />
+          <End Role="CATAAreasEstructural" Type="Self.CATAAreasEstructural" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="CATAAreasEstructural">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATAAreasFuncionales_idCATAEstatus">
+          <End Role="CATAEstatus" Type="Self.CATAEstatus" Multiplicity="1" />
+          <End Role="CATAAreasFuncional" Type="Self.CATAAreasFuncional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="CATAAreasFuncional">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATACarreras_idCATAEstatus">
+          <End Role="CATAEstatus" Type="Self.CATAEstatus" Multiplicity="1" />
+          <End Role="CATACarreras" Type="Self.CATACarreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="CATACarreras">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATACategoria_idCATATipoPlazaNuevo">
+          <End Role="CATATipoPlazaNuevo" Type="Self.CATATipoPlazaNuevo" Multiplicity="1" />
+          <End Role="CATACategoria" Type="Self.CATACategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATATipoPlazaNuevo">
+              <PropertyRef Name="idCATATipoPlazaNuevo" />
+            </Principal>
+            <Dependent Role="CATACategoria">
+              <PropertyRef Name="idCATATipoPlazaNuevo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATANivelPuesto_idCATACategoria">
+          <End Role="CATACategoria" Type="Self.CATACategoria" Multiplicity="1" />
+          <End Role="CATANivelPuesto" Type="Self.CATANivelPuesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATACategoria">
+              <PropertyRef Name="idCATACategoria" />
+            </Principal>
+            <Dependent Role="CATANivelPuesto">
+              <PropertyRef Name="idCATACategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATATipoModulo_idCATAEstatus">
+          <End Role="CATAEstatus" Type="Self.CATAEstatus" Multiplicity="1" />
+          <End Role="CATATipoModulo" Type="Self.CATATipoModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="CATATipoModulo">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Correos_idCATAEstatus">
+          <End Role="CATAEstatus" Type="Self.CATAEstatus" Multiplicity="1" />
+          <End Role="Correos" Type="Self.Correos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="Correos">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Correos_idCATATipoCorreo">
+          <End Role="CATATipoCorreo" Type="Self.CATATipoCorreo" Multiplicity="1" />
+          <End Role="Correos" Type="Self.Correos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATATipoCorreo">
+              <PropertyRef Name="idCATATipoCorreo" />
+            </Principal>
+            <Dependent Role="Correos">
+              <PropertyRef Name="idCATATipoCorreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialAltasBajas_idCATAMotivoBaja">
+          <End Role="CATAMotivoBaja" Type="Self.CATAMotivoBaja" Multiplicity="1" />
+          <End Role="HistorialAltasBajasPersonas" Type="Self.HistorialAltasBajasPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAMotivoBaja">
+              <PropertyRef Name="idCATAMotivoBaja" />
+            </Principal>
+            <Dependent Role="HistorialAltasBajasPersonas">
+              <PropertyRef Name="idCATAMotivoBaja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroContacto_idCATAEstatus">
+          <End Role="CATAEstatus" Type="Self.CATAEstatus" Multiplicity="1" />
+          <End Role="NumeroContacto" Type="Self.NumeroContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="NumeroContacto">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroContacto_idCataTipoTelefono">
+          <End Role="CATATipoTelefono" Type="Self.CATATipoTelefono" Multiplicity="1" />
+          <End Role="NumeroContacto" Type="Self.NumeroContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATATipoTelefono">
+              <PropertyRef Name="idCATATipoTelefono" />
+            </Principal>
+            <Dependent Role="NumeroContacto">
+              <PropertyRef Name="idCataTipoTelefono" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisosModulo_idCATAEstatus">
+          <End Role="CATAEstatus" Type="Self.CATAEstatus" Multiplicity="1" />
+          <End Role="PermisosModulo" Type="Self.PermisosModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="PermisosModulo">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisosModulo_idCATATipoModulo">
+          <End Role="CATATipoModulo" Type="Self.CATATipoModulo" Multiplicity="1" />
+          <End Role="PermisosModulo" Type="Self.PermisosModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATATipoModulo">
+              <PropertyRef Name="idCATATipoModulo" />
+            </Principal>
+            <Dependent Role="PermisosModulo">
+              <PropertyRef Name="idCATATipoModulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plazas_CATACodigosPlaza">
+          <End Role="CATACodigosPlaza" Type="Self.CATACodigosPlaza" Multiplicity="1" />
+          <End Role="Plazas" Type="Self.Plazas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATACodigosPlaza">
+              <PropertyRef Name="idCATACodigosPlaza" />
+            </Principal>
+            <Dependent Role="Plazas">
+              <PropertyRef Name="idCATACodigosPlaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plazas_CATAEstatusPlaza">
+          <End Role="CATAEstatusPlaza" Type="Self.CATAEstatusPlaza" Multiplicity="1" />
+          <End Role="Plazas" Type="Self.Plazas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatusPlaza">
+              <PropertyRef Name="idCATAEstatusPlaza" />
+            </Principal>
+            <Dependent Role="Plazas">
+              <PropertyRef Name="idCATAEstatusPlaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plazas_CATAPuestos">
+          <End Role="CATAPuestos" Type="Self.CATAPuestos" Multiplicity="1" />
+          <End Role="Plazas" Type="Self.Plazas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAPuestos">
+              <PropertyRef Name="idCATAPuestos" />
+            </Principal>
+            <Dependent Role="Plazas">
+              <PropertyRef Name="idCATAPuestos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_AltaPersonal2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="APaterno" Type="varchar" Mode="In" />
+          <Parameter Name="AMaterno" Type="varchar" Mode="In" />
+          <Parameter Name="nombres" Type="varchar" Mode="In" />
+          <Parameter Name="FNacimiento" Type="date" Mode="In" />
+          <Parameter Name="RFC" Type="varchar" Mode="In" />
+          <Parameter Name="Homoclave" Type="varchar" Mode="In" />
+          <Parameter Name="Curp" Type="varchar" Mode="In" />
+          <Parameter Name="FIngresoinst" Type="date" Mode="In" />
+          <Parameter Name="Espapaomama" Type="tinyint" Mode="In" />
+        </Function>
+        <EntityContainer Name="SARHModelStoreContainer">
+          <EntitySet Name="CATAAños" EntityType="Self.CATAAños" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATAAreasEstructural" EntityType="Self.CATAAreasEstructural" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATAAreasFuncional" EntityType="Self.CATAAreasFuncional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATACarreras" EntityType="Self.CATACarreras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATACategoria" EntityType="Self.CATACategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATACodigosPlaza" EntityType="Self.CATACodigosPlaza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATAEstatus" EntityType="Self.CATAEstatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATAEstatusPlaza" EntityType="Self.CATAEstatusPlaza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATAMotivoBaja" EntityType="Self.CATAMotivoBaja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATAMovimientos" EntityType="Self.CATAMovimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATANivelPuesto" EntityType="Self.CATANivelPuesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATANombreEscuela" EntityType="Self.CATANombreEscuela" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATAParents" EntityType="Self.CATAParents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATAPuestos" EntityType="Self.CATAPuestos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATASituacionAcademica" EntityType="Self.CATASituacionAcademica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATATipoCorreo" EntityType="Self.CATATipoCorreo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATATipoModulo" EntityType="Self.CATATipoModulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATATipoMovimientoBitacora" EntityType="Self.CATATipoMovimientoBitacora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATATipoNivelPuesto" EntityType="Self.CATATipoNivelPuesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATATipoPlaza" EntityType="Self.CATATipoPlaza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATATipoPlazaNuevo" EntityType="Self.CATATipoPlazaNuevo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATATipoTelefono" EntityType="Self.CATATipoTelefono" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Correos" EntityType="Self.Correos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatosCredencialInstitucional" EntityType="Self.DatosCredencialInstitucional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialAltasBajasPersonas" EntityType="Self.HistorialAltasBajasPersonas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialPerPlazas" EntityType="Self.HistorialPerPlazas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NumeroContacto" EntityType="Self.NumeroContacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermisosModulo" EntityType="Self.PermisosModulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalNew" EntityType="Self.PersonalNew" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plazas" EntityType="Self.Plazas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATADirecionesArea" EntityType="Self.CATADirecionesArea" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CATADirecionesArea].[idDireccionArea] AS [idDireccionArea], 
+    [CATADirecionesArea].[DA_Nombre] AS [DA_Nombre], 
+    [CATADirecionesArea].[DA_Iniciales] AS [DA_Iniciales], 
+    [CATADirecionesArea].[idCATAAreasFuncional] AS [idCATAAreasFuncional], 
+    [CATADirecionesArea].[Estatus] AS [Estatus], 
+    [CATADirecionesArea].[FechaAlta] AS [FechaAlta], 
+    [CATADirecionesArea].[FechaBaja] AS [FechaBaja]
+    FROM [dbo].[CATADirecionesArea] AS [CATADirecionesArea]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CATANivelEstudios" EntityType="Self.CATANivelEstudios" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CATANivelEstudios].[idCATANivelEstudios] AS [idCATANivelEstudios], 
+    [CATANivelEstudios].[Nivel] AS [Nivel], 
+    [CATANivelEstudios].[ControlRegistroHistorial] AS [ControlRegistroHistorial], 
+    [CATANivelEstudios].[Orden] AS [Orden], 
+    [CATANivelEstudios].[ExigeFechaFin] AS [ExigeFechaFin]
+    FROM [dbo].[CATANivelEstudios] AS [CATANivelEstudios]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HistorialAcademico" EntityType="Self.HistorialAcademico" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HistorialAcademico].[idHistorialAcademico] AS [idHistorialAcademico], 
+    [HistorialAcademico].[idPersonal] AS [idPersonal], 
+    [HistorialAcademico].[idCATANivelEstudios] AS [idCATANivelEstudios], 
+    [HistorialAcademico].[idCATACarreras] AS [idCATACarreras], 
+    [HistorialAcademico].[FechaInicio] AS [FechaInicio], 
+    [HistorialAcademico].[FechaConcluye] AS [FechaConcluye], 
+    [HistorialAcademico].[fechaRegistro] AS [fechaRegistro], 
+    [HistorialAcademico].[cedula] AS [cedula], 
+    [HistorialAcademico].[idCATANombreEscuela] AS [idCATANombreEscuela], 
+    [HistorialAcademico].[idCATASituacionAcademica] AS [idCATASituacionAcademica]
+    FROM [dbo].[HistorialAcademico] AS [HistorialAcademico]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_DetallePersonal" EntityType="Self.V_DetallePersonal" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_DetallePersonal].[Nombre Completo] AS [Nombre Completo], 
+    [V_DetallePersonal].[Fecha de Nacimiento] AS [Fecha de Nacimiento], 
+    [V_DetallePersonal].[RFC] AS [RFC], 
+    [V_DetallePersonal].[Homoclave] AS [Homoclave], 
+    [V_DetallePersonal].[CURP] AS [CURP], 
+    [V_DetallePersonal].[Sexo] AS [Sexo], 
+    [V_DetallePersonal].[Fecha Ingreso Institución] AS [Fecha Ingreso Institución], 
+    [V_DetallePersonal].[Fecha Registro] AS [Fecha Registro], 
+    [V_DetallePersonal].[Descripcion] AS [Descripcion]
+    FROM [dbo].[V_DetallePersonal] AS [V_DetallePersonal]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_PlazasVacantes" EntityType="Self.V_PlazasVacantes" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_PlazasVacantes].[numeroPlaza] AS [numeroPlaza], 
+    [V_PlazasVacantes].[idCATAPuestos] AS [idCATAPuestos], 
+    [V_PlazasVacantes].[NombrePuesto] AS [NombrePuesto], 
+    [V_PlazasVacantes].[idCATACodigosPlaza] AS [idCATACodigosPlaza], 
+    [V_PlazasVacantes].[descripcion] AS [descripcion], 
+    [V_PlazasVacantes].[NivelPlaza] AS [NivelPlaza], 
+    [V_PlazasVacantes].[SueldoBase] AS [SueldoBase], 
+    [V_PlazasVacantes].[Compensacion] AS [Compensacion], 
+    [V_PlazasVacantes].[SueldoBruto] AS [SueldoBruto], 
+    [V_PlazasVacantes].[CargoEstructura] AS [CargoEstructura], 
+    [V_PlazasVacantes].[ClavePresupuestal] AS [ClavePresupuestal], 
+    [V_PlazasVacantes].[idCATAEstatusPlaza] AS [idCATAEstatusPlaza], 
+    [V_PlazasVacantes].[Estatus] AS [Estatus], 
+    [V_PlazasVacantes].[fechaRegistro] AS [fechaRegistro]
+    FROM [dbo].[V_PlazasVacantes] AS [V_PlazasVacantes]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CATAAreasEstructurales_idCATAEstatus" Association="Self.FK_CATAAreasEstructurales_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="CATAAreasEstructural" EntitySet="CATAAreasEstructural" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATAAreasFuncionales_idCATAEstatus" Association="Self.FK_CATAAreasFuncionales_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="CATAAreasFuncional" EntitySet="CATAAreasFuncional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATACarreras_idCATAEstatus" Association="Self.FK_CATACarreras_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="CATACarreras" EntitySet="CATACarreras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATACategoria_idCATATipoPlazaNuevo" Association="Self.FK_CATACategoria_idCATATipoPlazaNuevo">
+            <End Role="CATATipoPlazaNuevo" EntitySet="CATATipoPlazaNuevo" />
+            <End Role="CATACategoria" EntitySet="CATACategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATANivelPuesto_idCATACategoria" Association="Self.FK_CATANivelPuesto_idCATACategoria">
+            <End Role="CATACategoria" EntitySet="CATACategoria" />
+            <End Role="CATANivelPuesto" EntitySet="CATANivelPuesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATATipoModulo_idCATAEstatus" Association="Self.FK_CATATipoModulo_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="CATATipoModulo" EntitySet="CATATipoModulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Correos_idCATAEstatus" Association="Self.FK_Correos_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="Correos" EntitySet="Correos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Correos_idCATATipoCorreo" Association="Self.FK_Correos_idCATATipoCorreo">
+            <End Role="CATATipoCorreo" EntitySet="CATATipoCorreo" />
+            <End Role="Correos" EntitySet="Correos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialAltasBajas_idCATAMotivoBaja" Association="Self.FK_HistorialAltasBajas_idCATAMotivoBaja">
+            <End Role="CATAMotivoBaja" EntitySet="CATAMotivoBaja" />
+            <End Role="HistorialAltasBajasPersonas" EntitySet="HistorialAltasBajasPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroContacto_idCATAEstatus" Association="Self.FK_NumeroContacto_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="NumeroContacto" EntitySet="NumeroContacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroContacto_idCataTipoTelefono" Association="Self.FK_NumeroContacto_idCataTipoTelefono">
+            <End Role="CATATipoTelefono" EntitySet="CATATipoTelefono" />
+            <End Role="NumeroContacto" EntitySet="NumeroContacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisosModulo_idCATAEstatus" Association="Self.FK_PermisosModulo_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="PermisosModulo" EntitySet="PermisosModulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisosModulo_idCATATipoModulo" Association="Self.FK_PermisosModulo_idCATATipoModulo">
+            <End Role="CATATipoModulo" EntitySet="CATATipoModulo" />
+            <End Role="PermisosModulo" EntitySet="PermisosModulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plazas_CATACodigosPlaza" Association="Self.FK_Plazas_CATACodigosPlaza">
+            <End Role="CATACodigosPlaza" EntitySet="CATACodigosPlaza" />
+            <End Role="Plazas" EntitySet="Plazas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plazas_CATAEstatusPlaza" Association="Self.FK_Plazas_CATAEstatusPlaza">
+            <End Role="CATAEstatusPlaza" EntitySet="CATAEstatusPlaza" />
+            <End Role="Plazas" EntitySet="Plazas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plazas_CATAPuestos" Association="Self.FK_Plazas_CATAPuestos">
+            <End Role="CATAPuestos" EntitySet="CATAPuestos" />
+            <End Role="Plazas" EntitySet="Plazas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SARHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SARHContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CATAAños" EntityType="SARHModel.CATAAños" />
+          <EntitySet Name="CATAAreasEstructural" EntityType="SARHModel.CATAAreasEstructural" />
+          <EntitySet Name="CATAAreasFuncional" EntityType="SARHModel.CATAAreasFuncional" />
+          <EntitySet Name="CATACarreras" EntityType="SARHModel.CATACarreras" />
+          <EntitySet Name="CATACategoria" EntityType="SARHModel.CATACategoria" />
+          <EntitySet Name="CATACodigosPlaza" EntityType="SARHModel.CATACodigosPlaza" />
+          <EntitySet Name="CATAEstatus" EntityType="SARHModel.CATAEstatus" />
+          <EntitySet Name="CATAEstatusPlaza" EntityType="SARHModel.CATAEstatusPlaza" />
+          <EntitySet Name="CATAMotivoBaja" EntityType="SARHModel.CATAMotivoBaja" />
+          <EntitySet Name="CATAMovimientos" EntityType="SARHModel.CATAMovimientos" />
+          <EntitySet Name="CATANivelPuesto" EntityType="SARHModel.CATANivelPuesto" />
+          <EntitySet Name="CATANombreEscuela" EntityType="SARHModel.CATANombreEscuela" />
+          <EntitySet Name="CATAParents" EntityType="SARHModel.CATAParents" />
+          <EntitySet Name="CATAPuestos" EntityType="SARHModel.CATAPuestos" />
+          <EntitySet Name="CATASituacionAcademica" EntityType="SARHModel.CATASituacionAcademica" />
+          <EntitySet Name="CATATipoCorreo" EntityType="SARHModel.CATATipoCorreo" />
+          <EntitySet Name="CATATipoModulo" EntityType="SARHModel.CATATipoModulo" />
+          <EntitySet Name="CATATipoMovimientoBitacora" EntityType="SARHModel.CATATipoMovimientoBitacora" />
+          <EntitySet Name="CATATipoNivelPuesto" EntityType="SARHModel.CATATipoNivelPuesto" />
+          <EntitySet Name="CATATipoPlaza" EntityType="SARHModel.CATATipoPlaza" />
+          <EntitySet Name="CATATipoPlazaNuevo" EntityType="SARHModel.CATATipoPlazaNuevo" />
+          <EntitySet Name="CATATipoTelefono" EntityType="SARHModel.CATATipoTelefono" />
+          <EntitySet Name="Correos" EntityType="SARHModel.Correos" />
+          <EntitySet Name="DatosCredencialInstitucional" EntityType="SARHModel.DatosCredencialInstitucional" />
+          <EntitySet Name="HistorialAltasBajasPersonas" EntityType="SARHModel.HistorialAltasBajasPersonas" />
+          <EntitySet Name="HistorialPerPlazas" EntityType="SARHModel.HistorialPerPlazas" />
+          <EntitySet Name="NumeroContacto" EntityType="SARHModel.NumeroContacto" />
+          <EntitySet Name="PermisosModulo" EntityType="SARHModel.PermisosModulo" />
+          <EntitySet Name="Personal" EntityType="SARHModel.Personal" />
+          <EntitySet Name="PersonalNew" EntityType="SARHModel.PersonalNew" />
+          <EntitySet Name="Plazas" EntityType="SARHModel.Plazas" />
+          <EntitySet Name="sysdiagrams" EntityType="SARHModel.sysdiagrams" />
+          <EntitySet Name="CATADirecionesArea" EntityType="SARHModel.CATADirecionesArea" />
+          <EntitySet Name="CATANivelEstudios" EntityType="SARHModel.CATANivelEstudios" />
+          <EntitySet Name="HistorialAcademico" EntityType="SARHModel.HistorialAcademico" />
+          <EntitySet Name="V_DetallePersonal" EntityType="SARHModel.V_DetallePersonal" />
+          <EntitySet Name="V_PlazasVacantes" EntityType="SARHModel.V_PlazasVacantes" />
+          <AssociationSet Name="FK_CATAAreasEstructurales_idCATAEstatus" Association="SARHModel.FK_CATAAreasEstructurales_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="CATAAreasEstructural" EntitySet="CATAAreasEstructural" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATAAreasFuncionales_idCATAEstatus" Association="SARHModel.FK_CATAAreasFuncionales_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="CATAAreasFuncional" EntitySet="CATAAreasFuncional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATACarreras_idCATAEstatus" Association="SARHModel.FK_CATACarreras_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="CATACarreras" EntitySet="CATACarreras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATACategoria_idCATATipoPlazaNuevo" Association="SARHModel.FK_CATACategoria_idCATATipoPlazaNuevo">
+            <End Role="CATATipoPlazaNuevo" EntitySet="CATATipoPlazaNuevo" />
+            <End Role="CATACategoria" EntitySet="CATACategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATANivelPuesto_idCATACategoria" Association="SARHModel.FK_CATANivelPuesto_idCATACategoria">
+            <End Role="CATACategoria" EntitySet="CATACategoria" />
+            <End Role="CATANivelPuesto" EntitySet="CATANivelPuesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plazas_CATACodigosPlaza" Association="SARHModel.FK_Plazas_CATACodigosPlaza">
+            <End Role="CATACodigosPlaza" EntitySet="CATACodigosPlaza" />
+            <End Role="Plazas" EntitySet="Plazas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATATipoModulo_idCATAEstatus" Association="SARHModel.FK_CATATipoModulo_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="CATATipoModulo" EntitySet="CATATipoModulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Correos_idCATAEstatus" Association="SARHModel.FK_Correos_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="Correos" EntitySet="Correos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroContacto_idCATAEstatus" Association="SARHModel.FK_NumeroContacto_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="NumeroContacto" EntitySet="NumeroContacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisosModulo_idCATAEstatus" Association="SARHModel.FK_PermisosModulo_idCATAEstatus">
+            <End Role="CATAEstatus" EntitySet="CATAEstatus" />
+            <End Role="PermisosModulo" EntitySet="PermisosModulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plazas_CATAEstatusPlaza" Association="SARHModel.FK_Plazas_CATAEstatusPlaza">
+            <End Role="CATAEstatusPlaza" EntitySet="CATAEstatusPlaza" />
+            <End Role="Plazas" EntitySet="Plazas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialAltasBajas_idCATAMotivoBaja" Association="SARHModel.FK_HistorialAltasBajas_idCATAMotivoBaja">
+            <End Role="CATAMotivoBaja" EntitySet="CATAMotivoBaja" />
+            <End Role="HistorialAltasBajasPersonas" EntitySet="HistorialAltasBajasPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plazas_CATAPuestos" Association="SARHModel.FK_Plazas_CATAPuestos">
+            <End Role="CATAPuestos" EntitySet="CATAPuestos" />
+            <End Role="Plazas" EntitySet="Plazas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Correos_idCATATipoCorreo" Association="SARHModel.FK_Correos_idCATATipoCorreo">
+            <End Role="CATATipoCorreo" EntitySet="CATATipoCorreo" />
+            <End Role="Correos" EntitySet="Correos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisosModulo_idCATATipoModulo" Association="SARHModel.FK_PermisosModulo_idCATATipoModulo">
+            <End Role="CATATipoModulo" EntitySet="CATATipoModulo" />
+            <End Role="PermisosModulo" EntitySet="PermisosModulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumeroContacto_idCataTipoTelefono" Association="SARHModel.FK_NumeroContacto_idCataTipoTelefono">
+            <End Role="CATATipoTelefono" EntitySet="CATATipoTelefono" />
+            <End Role="NumeroContacto" EntitySet="NumeroContacto" />
+          </AssociationSet>
+          <FunctionImport Name="sp_AltaPersonal2">
+            <Parameter Name="APaterno" Mode="In" Type="String" />
+            <Parameter Name="AMaterno" Mode="In" Type="String" />
+            <Parameter Name="nombres" Mode="In" Type="String" />
+            <Parameter Name="FNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="RFC" Mode="In" Type="String" />
+            <Parameter Name="Homoclave" Mode="In" Type="String" />
+            <Parameter Name="Curp" Mode="In" Type="String" />
+            <Parameter Name="FIngresoinst" Mode="In" Type="DateTime" />
+            <Parameter Name="Espapaomama" Mode="In" Type="Byte" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="CATAAños">
+          <Key>
+            <PropertyRef Name="idCATAAños" />
+          </Key>
+          <Property Name="idCATAAños" Type="Int32" Nullable="false" />
+          <Property Name="año" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CATAAreasEstructural">
+          <Key>
+            <PropertyRef Name="idCATAAreasEstructural" />
+          </Key>
+          <Property Name="idCATAAreasEstructural" Type="Int16" Nullable="false" />
+          <Property Name="DG_Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DG_Iniciales" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ClaveAreaEstructural" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="idCATAEstatus" Type="Byte" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CATAEstatus" Relationship="SARHModel.FK_CATAAreasEstructurales_idCATAEstatus" FromRole="CATAAreasEstructural" ToRole="CATAEstatus" />
+        </EntityType>
+        <EntityType Name="CATAAreasFuncional">
+          <Key>
+            <PropertyRef Name="idCATAAreasFuncional" />
+          </Key>
+          <Property Name="idCATAAreasFuncional" Type="Int16" Nullable="false" />
+          <Property Name="DG_Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DG_Iniciales" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="idCATAEstatus" Type="Byte" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CATAEstatus" Relationship="SARHModel.FK_CATAAreasFuncionales_idCATAEstatus" FromRole="CATAAreasFuncional" ToRole="CATAEstatus" />
+        </EntityType>
+        <EntityType Name="CATACarreras">
+          <Key>
+            <PropertyRef Name="idCATACarreras" />
+          </Key>
+          <Property Name="idCATACarreras" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionCarrera" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="idCATAEstatus" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="CATAEstatus" Relationship="SARHModel.FK_CATACarreras_idCATAEstatus" FromRole="CATACarreras" ToRole="CATAEstatus" />
+        </EntityType>
+        <EntityType Name="CATACategoria">
+          <Key>
+            <PropertyRef Name="idCATACategoria" />
+          </Key>
+          <Property Name="idCATACategoria" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionCategoria" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="idCATATipoPlazaNuevo" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="CATATipoPlazaNuevo" Relationship="SARHModel.FK_CATACategoria_idCATATipoPlazaNuevo" FromRole="CATACategoria" ToRole="CATATipoPlazaNuevo" />
+          <NavigationProperty Name="CATANivelPuesto" Relationship="SARHModel.FK_CATANivelPuesto_idCATACategoria" FromRole="CATACategoria" ToRole="CATANivelPuesto" />
+        </EntityType>
+        <EntityType Name="CATACodigosPlaza">
+          <Key>
+            <PropertyRef Name="idCATACodigosPlaza" />
+          </Key>
+          <Property Name="idCATACodigosPlaza" Type="Int16" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NivelPlaza" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="SueldoBase" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="Compensacion" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="idFiltroPuestoClave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SueldoBruto" Type="Decimal" Precision="10" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Plazas" Relationship="SARHModel.FK_Plazas_CATACodigosPlaza" FromRole="CATACodigosPlaza" ToRole="Plazas" />
+        </EntityType>
+        <EntityType Name="CATAEstatus">
+          <Key>
+            <PropertyRef Name="idCATAEstatus" />
+          </Key>
+          <Property Name="idCATAEstatus" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionEstatus" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CATAAreasEstructural" Relationship="SARHModel.FK_CATAAreasEstructurales_idCATAEstatus" FromRole="CATAEstatus" ToRole="CATAAreasEstructural" />
+          <NavigationProperty Name="CATAAreasFuncional" Relationship="SARHModel.FK_CATAAreasFuncionales_idCATAEstatus" FromRole="CATAEstatus" ToRole="CATAAreasFuncional" />
+          <NavigationProperty Name="CATACarreras" Relationship="SARHModel.FK_CATACarreras_idCATAEstatus" FromRole="CATAEstatus" ToRole="CATACarreras" />
+          <NavigationProperty Name="CATATipoModulo" Relationship="SARHModel.FK_CATATipoModulo_idCATAEstatus" FromRole="CATAEstatus" ToRole="CATATipoModulo" />
+          <NavigationProperty Name="Correos" Relationship="SARHModel.FK_Correos_idCATAEstatus" FromRole="CATAEstatus" ToRole="Correos" />
+          <NavigationProperty Name="NumeroContacto" Relationship="SARHModel.FK_NumeroContacto_idCATAEstatus" FromRole="CATAEstatus" ToRole="NumeroContacto" />
+          <NavigationProperty Name="PermisosModulo" Relationship="SARHModel.FK_PermisosModulo_idCATAEstatus" FromRole="CATAEstatus" ToRole="PermisosModulo" />
+        </EntityType>
+        <EntityType Name="CATAEstatusPlaza">
+          <Key>
+            <PropertyRef Name="idCATAEstatusPlaza" />
+          </Key>
+          <Property Name="idCATAEstatusPlaza" Type="Byte" Nullable="false" />
+          <Property Name="Estatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Plazas" Relationship="SARHModel.FK_Plazas_CATAEstatusPlaza" FromRole="CATAEstatusPlaza" ToRole="Plazas" />
+        </EntityType>
+        <EntityType Name="CATAMotivoBaja">
+          <Key>
+            <PropertyRef Name="idCATAMotivoBaja" />
+          </Key>
+          <Property Name="idCATAMotivoBaja" Type="Byte" Nullable="false" />
+          <Property Name="MotivoBaja" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HistorialAltasBajasPersonas" Relationship="SARHModel.FK_HistorialAltasBajas_idCATAMotivoBaja" FromRole="CATAMotivoBaja" ToRole="HistorialAltasBajasPersonas" />
+        </EntityType>
+        <EntityType Name="CATAMovimientos">
+          <Key>
+            <PropertyRef Name="idTipoMovimiento" />
+          </Key>
+          <Property Name="idTipoMovimiento" Type="Int16" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CATANivelPuesto">
+          <Key>
+            <PropertyRef Name="idCATANivelPuesto" />
+          </Key>
+          <Property Name="idCATANivelPuesto" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionNivelPuesto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="idCATACategoria" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="CATACategoria" Relationship="SARHModel.FK_CATANivelPuesto_idCATACategoria" FromRole="CATANivelPuesto" ToRole="CATACategoria" />
+        </EntityType>
+        <EntityType Name="CATANombreEscuela">
+          <Key>
+            <PropertyRef Name="idCATANombreEscuela" />
+          </Key>
+          <Property Name="idCATANombreEscuela" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionNombreEscuela" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CATAParents">
+          <Key>
+            <PropertyRef Name="idCATAParents" />
+          </Key>
+          <Property Name="idCATAParents" Type="Byte" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CATAPuestos">
+          <Key>
+            <PropertyRef Name="idCATAPuestos" />
+          </Key>
+          <Property Name="idCATAPuestos" Type="Int16" Nullable="false" />
+          <Property Name="NombrePuesto" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="idCATANivelPuesto" Type="Byte" />
+          <Property Name="DescripcionPuesto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idCATATipoNivelPuesto" Type="Byte" />
+          <NavigationProperty Name="Plazas" Relationship="SARHModel.FK_Plazas_CATAPuestos" FromRole="CATAPuestos" ToRole="Plazas" />
+        </EntityType>
+        <EntityType Name="CATASituacionAcademica">
+          <Key>
+            <PropertyRef Name="idCATASituacionAcademica" />
+          </Key>
+          <Property Name="idCATASituacionAcademica" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionSituacionAcademica" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CATATipoCorreo">
+          <Key>
+            <PropertyRef Name="idCATATipoCorreo" />
+          </Key>
+          <Property Name="idCATATipoCorreo" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionTipoCorreo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Correos" Relationship="SARHModel.FK_Correos_idCATATipoCorreo" FromRole="CATATipoCorreo" ToRole="Correos" />
+        </EntityType>
+        <EntityType Name="CATATipoModulo">
+          <Key>
+            <PropertyRef Name="idCATATipoModulo" />
+          </Key>
+          <Property Name="idCATATipoModulo" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionTipoModulo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="idCATAEstatus" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="CATAEstatus" Relationship="SARHModel.FK_CATATipoModulo_idCATAEstatus" FromRole="CATATipoModulo" ToRole="CATAEstatus" />
+          <NavigationProperty Name="PermisosModulo" Relationship="SARHModel.FK_PermisosModulo_idCATATipoModulo" FromRole="CATATipoModulo" ToRole="PermisosModulo" />
+        </EntityType>
+        <EntityType Name="CATATipoMovimientoBitacora">
+          <Key>
+            <PropertyRef Name="idCATATipoMovimientoBitacora" />
+          </Key>
+          <Property Name="idCATATipoMovimientoBitacora" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionTipoMovBitacora" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CATATipoNivelPuesto">
+          <Key>
+            <PropertyRef Name="idCATATipoNivelPuesto" />
+          </Key>
+          <Property Name="idCATATipoNivelPuesto" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionNivelPuesto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CATATipoPlaza">
+          <Key>
+            <PropertyRef Name="idCATATipoPlaza" />
+          </Key>
+          <Property Name="idCATATipoPlaza" Type="Byte" Nullable="false" />
+          <Property Name="TipoPlaza" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CATATipoPlazaNuevo">
+          <Key>
+            <PropertyRef Name="idCATATipoPlazaNuevo" />
+          </Key>
+          <Property Name="idCATATipoPlazaNuevo" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionTipoPlazaN" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CATACategoria" Relationship="SARHModel.FK_CATACategoria_idCATATipoPlazaNuevo" FromRole="CATATipoPlazaNuevo" ToRole="CATACategoria" />
+        </EntityType>
+        <EntityType Name="CATATipoTelefono">
+          <Key>
+            <PropertyRef Name="idCATATipoTelefono" />
+          </Key>
+          <Property Name="idCATATipoTelefono" Type="Byte" Nullable="false" />
+          <Property Name="DescripcionTipoTelefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NumeroContacto" Relationship="SARHModel.FK_NumeroContacto_idCataTipoTelefono" FromRole="CATATipoTelefono" ToRole="NumeroContacto" />
+        </EntityType>
+        <EntityType Name="Correos">
+          <Key>
+            <PropertyRef Name="idCorreo" />
+          </Key>
+          <Property Name="idCorreo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPersonal" Type="Int32" Nullable="false" />
+          <Property Name="idCATATipoCorreo" Type="Byte" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idCATAEstatus" Type="Byte" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CATAEstatus" Relationship="SARHModel.FK_Correos_idCATAEstatus" FromRole="Correos" ToRole="CATAEstatus" />
+          <NavigationProperty Name="CATATipoCorreo" Relationship="SARHModel.FK_Correos_idCATATipoCorreo" FromRole="Correos" ToRole="CATATipoCorreo" />
+        </EntityType>
+        <EntityType Name="DatosCredencialInstitucional">
+          <Key>
+            <PropertyRef Name="idDatosCredencialInstitucional" />
+          </Key>
+          <Property Name="idDatosCredencialInstitucional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPersonal" Type="Int32" Nullable="false" />
+          <Property Name="NoGafete" Type="Int32" Nullable="false" />
+          <Property Name="idCATAPuestos" Type="Int16" Nullable="false" />
+          <Property Name="idCATAAñoVigencia" Type="Int32" Nullable="false" />
+          <Property Name="CodigoAcceso" Type="Int32" Nullable="false" />
+          <Property Name="TieneResello" Type="Boolean" Nullable="false" />
+          <Property Name="idCATAAñoResello" Type="Int32" />
+          <Property Name="idCATAEstatusCredencial" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialAltasBajasPersonas">
+          <Key>
+            <PropertyRef Name="idHistorialAltasBajasPersonas" />
+          </Key>
+          <Property Name="idHistorialAltasBajasPersonas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPersonal" Type="Int32" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaBaja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idCATAEstatusRegistro" Type="Byte" Nullable="false" />
+          <Property Name="idCATAMotivoBaja" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="CATAMotivoBaja" Relationship="SARHModel.FK_HistorialAltasBajas_idCATAMotivoBaja" FromRole="HistorialAltasBajasPersonas" ToRole="CATAMotivoBaja" />
+        </EntityType>
+        <EntityType Name="HistorialPerPlazas">
+          <Key>
+            <PropertyRef Name="idHistorialPerPlazas" />
+          </Key>
+          <Property Name="idHistorialPerPlazas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPersonal" Type="Int32" Nullable="false" />
+          <Property Name="idPlazas" Type="Int32" Nullable="false" />
+          <Property Name="fechaAsignacionPlaza" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idCATAAreasFuncionales" Type="Int16" Nullable="false" />
+          <Property Name="idTipoMovimiento" Type="Int16" Nullable="false" />
+          <Property Name="CargoFuncional" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Funciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estatusHistorialPerPlazasActual" Type="Int32" Nullable="false" />
+          <Property Name="FechaDesasignacion" Type="DateTime" Precision="3" />
+          <Property Name="idDireccionArea" Type="Int32" />
+        </EntityType>
+        <EntityType Name="NumeroContacto">
+          <Key>
+            <PropertyRef Name="idNumeroContacto" />
+          </Key>
+          <Property Name="idNumeroContacto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPersonal" Type="Int32" Nullable="false" />
+          <Property Name="NumeroTelefonico" Type="Int32" Nullable="false" />
+          <Property Name="idCataTipoTelefono" Type="Byte" Nullable="false" />
+          <Property Name="idCATAEstatus" Type="Byte" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CATAEstatus" Relationship="SARHModel.FK_NumeroContacto_idCATAEstatus" FromRole="NumeroContacto" ToRole="CATAEstatus" />
+          <NavigationProperty Name="CATATipoTelefono" Relationship="SARHModel.FK_NumeroContacto_idCataTipoTelefono" FromRole="NumeroContacto" ToRole="CATATipoTelefono" />
+        </EntityType>
+        <EntityType Name="PermisosModulo">
+          <Key>
+            <PropertyRef Name="idPermisosModulo" />
+          </Key>
+          <Property Name="idPermisosModulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPersonal" Type="Int32" Nullable="false" />
+          <Property Name="TipoAccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idCATATipoModulo" Type="Byte" Nullable="false" />
+          <Property Name="idCATAEstatus" Type="Byte" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CATAEstatus" Relationship="SARHModel.FK_PermisosModulo_idCATAEstatus" FromRole="PermisosModulo" ToRole="CATAEstatus" />
+          <NavigationProperty Name="CATATipoModulo" Relationship="SARHModel.FK_PermisosModulo_idCATATipoModulo" FromRole="PermisosModulo" ToRole="CATATipoModulo" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="idPersonal" />
+          </Key>
+          <Property Name="idPersonal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="nombres" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="nombreCompleto" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RFC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Homoclave" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CURP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="fechaIngresoInstitucion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idCATAEstatus" Type="Byte" Nullable="false" />
+          <Property Name="Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="0" />
+          <Property Name="idCATAParents" Type="Byte" />
+        </EntityType>
+        <EntityType Name="PersonalNew">
+          <Key>
+            <PropertyRef Name="idPersonaNew" />
+          </Key>
+          <Property Name="idPersonaNew" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apellidoPaterno" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoMaterno" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="nombres" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="nombreCompleto" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Plazas">
+          <Key>
+            <PropertyRef Name="idPlazas" />
+          </Key>
+          <Property Name="idPlazas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroPlaza" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idCATAPuestos" Type="Int16" Nullable="false" />
+          <Property Name="idCATACodigosPlaza" Type="Int16" Nullable="false" />
+          <Property Name="CargoEstructura" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ClavePresupuestal" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="idCATAEstatusPlaza" Type="Byte" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CATACodigosPlaza" Relationship="SARHModel.FK_Plazas_CATACodigosPlaza" FromRole="Plazas" ToRole="CATACodigosPlaza" />
+          <NavigationProperty Name="CATAEstatusPlaza" Relationship="SARHModel.FK_Plazas_CATAEstatusPlaza" FromRole="Plazas" ToRole="CATAEstatusPlaza" />
+          <NavigationProperty Name="CATAPuestos" Relationship="SARHModel.FK_Plazas_CATAPuestos" FromRole="Plazas" ToRole="CATAPuestos" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CATADirecionesArea">
+          <Key>
+            <PropertyRef Name="idDireccionArea" />
+            <PropertyRef Name="DA_Nombre" />
+            <PropertyRef Name="DA_Iniciales" />
+            <PropertyRef Name="idCATAAreasFuncional" />
+            <PropertyRef Name="Estatus" />
+            <PropertyRef Name="FechaAlta" />
+            <PropertyRef Name="FechaBaja" />
+          </Key>
+          <Property Name="idDireccionArea" Type="Int32" Nullable="false" />
+          <Property Name="DA_Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DA_Iniciales" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idCATAAreasFuncional" Type="Int32" Nullable="false" />
+          <Property Name="Estatus" Type="Byte" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaBaja" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="CATANivelEstudios">
+          <Key>
+            <PropertyRef Name="idCATANivelEstudios" />
+            <PropertyRef Name="Nivel" />
+            <PropertyRef Name="ControlRegistroHistorial" />
+            <PropertyRef Name="Orden" />
+            <PropertyRef Name="ExigeFechaFin" />
+          </Key>
+          <Property Name="idCATANivelEstudios" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nivel" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="ControlRegistroHistorial" Type="Byte" Nullable="false" />
+          <Property Name="Orden" Type="Byte" Nullable="false" />
+          <Property Name="ExigeFechaFin" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialAcademico">
+          <Key>
+            <PropertyRef Name="idHistorialAcademico" />
+            <PropertyRef Name="idPersonal" />
+            <PropertyRef Name="idCATANivelEstudios" />
+          </Key>
+          <Property Name="idHistorialAcademico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPersonal" Type="Int32" Nullable="false" />
+          <Property Name="idCATANivelEstudios" Type="Int16" Nullable="false" />
+          <Property Name="idCATACarreras" Type="Int16" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="FechaConcluye" Type="DateTime" Precision="0" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="0" />
+          <Property Name="cedula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idCATANombreEscuela" Type="Byte" />
+          <Property Name="idCATASituacionAcademica" Type="Byte" />
+        </EntityType>
+        <EntityType Name="V_DetallePersonal">
+          <Key>
+            <PropertyRef Name="Nombre_Completo" />
+            <PropertyRef Name="Fecha_de_Nacimiento" />
+            <PropertyRef Name="RFC" />
+            <PropertyRef Name="Homoclave" />
+            <PropertyRef Name="CURP" />
+            <PropertyRef Name="Fecha_Ingreso_Institución" />
+          </Key>
+          <Property Name="Nombre_Completo" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_de_Nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RFC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Homoclave" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CURP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Ingreso_Institución" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Registro" Type="DateTime" Precision="0" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="V_PlazasVacantes">
+          <Key>
+            <PropertyRef Name="numeroPlaza" />
+            <PropertyRef Name="idCATAPuestos" />
+            <PropertyRef Name="NombrePuesto" />
+            <PropertyRef Name="idCATACodigosPlaza" />
+            <PropertyRef Name="descripcion" />
+            <PropertyRef Name="NivelPlaza" />
+            <PropertyRef Name="SueldoBase" />
+            <PropertyRef Name="Compensacion" />
+            <PropertyRef Name="CargoEstructura" />
+            <PropertyRef Name="ClavePresupuestal" />
+            <PropertyRef Name="idCATAEstatusPlaza" />
+            <PropertyRef Name="Estatus" />
+            <PropertyRef Name="fechaRegistro" />
+          </Key>
+          <Property Name="numeroPlaza" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idCATAPuestos" Type="Int16" Nullable="false" />
+          <Property Name="NombrePuesto" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="idCATACodigosPlaza" Type="Int16" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NivelPlaza" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="SueldoBase" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="Compensacion" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="SueldoBruto" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="CargoEstructura" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ClavePresupuestal" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="idCATAEstatusPlaza" Type="Byte" Nullable="false" />
+          <Property Name="Estatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <Association Name="FK_CATAAreasEstructurales_idCATAEstatus">
+          <End Type="SARHModel.CATAEstatus" Role="CATAEstatus" Multiplicity="1" />
+          <End Type="SARHModel.CATAAreasEstructural" Role="CATAAreasEstructural" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="CATAAreasEstructural">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATAAreasFuncionales_idCATAEstatus">
+          <End Type="SARHModel.CATAEstatus" Role="CATAEstatus" Multiplicity="1" />
+          <End Type="SARHModel.CATAAreasFuncional" Role="CATAAreasFuncional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="CATAAreasFuncional">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATACarreras_idCATAEstatus">
+          <End Type="SARHModel.CATAEstatus" Role="CATAEstatus" Multiplicity="1" />
+          <End Type="SARHModel.CATACarreras" Role="CATACarreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="CATACarreras">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATACategoria_idCATATipoPlazaNuevo">
+          <End Type="SARHModel.CATATipoPlazaNuevo" Role="CATATipoPlazaNuevo" Multiplicity="1" />
+          <End Type="SARHModel.CATACategoria" Role="CATACategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATATipoPlazaNuevo">
+              <PropertyRef Name="idCATATipoPlazaNuevo" />
+            </Principal>
+            <Dependent Role="CATACategoria">
+              <PropertyRef Name="idCATATipoPlazaNuevo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATANivelPuesto_idCATACategoria">
+          <End Type="SARHModel.CATACategoria" Role="CATACategoria" Multiplicity="1" />
+          <End Type="SARHModel.CATANivelPuesto" Role="CATANivelPuesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATACategoria">
+              <PropertyRef Name="idCATACategoria" />
+            </Principal>
+            <Dependent Role="CATANivelPuesto">
+              <PropertyRef Name="idCATACategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plazas_CATACodigosPlaza">
+          <End Type="SARHModel.CATACodigosPlaza" Role="CATACodigosPlaza" Multiplicity="1" />
+          <End Type="SARHModel.Plazas" Role="Plazas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATACodigosPlaza">
+              <PropertyRef Name="idCATACodigosPlaza" />
+            </Principal>
+            <Dependent Role="Plazas">
+              <PropertyRef Name="idCATACodigosPlaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATATipoModulo_idCATAEstatus">
+          <End Type="SARHModel.CATAEstatus" Role="CATAEstatus" Multiplicity="1" />
+          <End Type="SARHModel.CATATipoModulo" Role="CATATipoModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="CATATipoModulo">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Correos_idCATAEstatus">
+          <End Type="SARHModel.CATAEstatus" Role="CATAEstatus" Multiplicity="1" />
+          <End Type="SARHModel.Correos" Role="Correos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="Correos">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroContacto_idCATAEstatus">
+          <End Type="SARHModel.CATAEstatus" Role="CATAEstatus" Multiplicity="1" />
+          <End Type="SARHModel.NumeroContacto" Role="NumeroContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="NumeroContacto">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisosModulo_idCATAEstatus">
+          <End Type="SARHModel.CATAEstatus" Role="CATAEstatus" Multiplicity="1" />
+          <End Type="SARHModel.PermisosModulo" Role="PermisosModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatus">
+              <PropertyRef Name="idCATAEstatus" />
+            </Principal>
+            <Dependent Role="PermisosModulo">
+              <PropertyRef Name="idCATAEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plazas_CATAEstatusPlaza">
+          <End Type="SARHModel.CATAEstatusPlaza" Role="CATAEstatusPlaza" Multiplicity="1" />
+          <End Type="SARHModel.Plazas" Role="Plazas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAEstatusPlaza">
+              <PropertyRef Name="idCATAEstatusPlaza" />
+            </Principal>
+            <Dependent Role="Plazas">
+              <PropertyRef Name="idCATAEstatusPlaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialAltasBajas_idCATAMotivoBaja">
+          <End Type="SARHModel.CATAMotivoBaja" Role="CATAMotivoBaja" Multiplicity="1" />
+          <End Type="SARHModel.HistorialAltasBajasPersonas" Role="HistorialAltasBajasPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAMotivoBaja">
+              <PropertyRef Name="idCATAMotivoBaja" />
+            </Principal>
+            <Dependent Role="HistorialAltasBajasPersonas">
+              <PropertyRef Name="idCATAMotivoBaja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plazas_CATAPuestos">
+          <End Type="SARHModel.CATAPuestos" Role="CATAPuestos" Multiplicity="1" />
+          <End Type="SARHModel.Plazas" Role="Plazas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATAPuestos">
+              <PropertyRef Name="idCATAPuestos" />
+            </Principal>
+            <Dependent Role="Plazas">
+              <PropertyRef Name="idCATAPuestos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Correos_idCATATipoCorreo">
+          <End Type="SARHModel.CATATipoCorreo" Role="CATATipoCorreo" Multiplicity="1" />
+          <End Type="SARHModel.Correos" Role="Correos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATATipoCorreo">
+              <PropertyRef Name="idCATATipoCorreo" />
+            </Principal>
+            <Dependent Role="Correos">
+              <PropertyRef Name="idCATATipoCorreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisosModulo_idCATATipoModulo">
+          <End Type="SARHModel.CATATipoModulo" Role="CATATipoModulo" Multiplicity="1" />
+          <End Type="SARHModel.PermisosModulo" Role="PermisosModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATATipoModulo">
+              <PropertyRef Name="idCATATipoModulo" />
+            </Principal>
+            <Dependent Role="PermisosModulo">
+              <PropertyRef Name="idCATATipoModulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumeroContacto_idCataTipoTelefono">
+          <End Type="SARHModel.CATATipoTelefono" Role="CATATipoTelefono" Multiplicity="1" />
+          <End Type="SARHModel.NumeroContacto" Role="NumeroContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATATipoTelefono">
+              <PropertyRef Name="idCATATipoTelefono" />
+            </Principal>
+            <Dependent Role="NumeroContacto">
+              <PropertyRef Name="idCataTipoTelefono" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SARHModelStoreContainer" CdmEntityContainer="SARHContext">
+          <EntitySetMapping Name="CATAAños">
+            <EntityTypeMapping TypeName="SARHModel.CATAAños">
+              <MappingFragment StoreEntitySet="CATAAños">
+                <ScalarProperty Name="año" ColumnName="año" />
+                <ScalarProperty Name="idCATAAños" ColumnName="idCATAAños" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATAAreasEstructural">
+            <EntityTypeMapping TypeName="SARHModel.CATAAreasEstructural">
+              <MappingFragment StoreEntitySet="CATAAreasEstructural">
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="idCATAEstatus" ColumnName="idCATAEstatus" />
+                <ScalarProperty Name="ClaveAreaEstructural" ColumnName="ClaveAreaEstructural" />
+                <ScalarProperty Name="DG_Iniciales" ColumnName="DG_Iniciales" />
+                <ScalarProperty Name="DG_Nombre" ColumnName="DG_Nombre" />
+                <ScalarProperty Name="idCATAAreasEstructural" ColumnName="idCATAAreasEstructural" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATAAreasFuncional">
+            <EntityTypeMapping TypeName="SARHModel.CATAAreasFuncional">
+              <MappingFragment StoreEntitySet="CATAAreasFuncional">
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="idCATAEstatus" ColumnName="idCATAEstatus" />
+                <ScalarProperty Name="DG_Iniciales" ColumnName="DG_Iniciales" />
+                <ScalarProperty Name="DG_Nombre" ColumnName="DG_Nombre" />
+                <ScalarProperty Name="idCATAAreasFuncional" ColumnName="idCATAAreasFuncional" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATACarreras">
+            <EntityTypeMapping TypeName="SARHModel.CATACarreras">
+              <MappingFragment StoreEntitySet="CATACarreras">
+                <ScalarProperty Name="idCATAEstatus" ColumnName="idCATAEstatus" />
+                <ScalarProperty Name="DescripcionCarrera" ColumnName="DescripcionCarrera" />
+                <ScalarProperty Name="idCATACarreras" ColumnName="idCATACarreras" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATACategoria">
+            <EntityTypeMapping TypeName="SARHModel.CATACategoria">
+              <MappingFragment StoreEntitySet="CATACategoria">
+                <ScalarProperty Name="idCATATipoPlazaNuevo" ColumnName="idCATATipoPlazaNuevo" />
+                <ScalarProperty Name="DescripcionCategoria" ColumnName="DescripcionCategoria" />
+                <ScalarProperty Name="idCATACategoria" ColumnName="idCATACategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATACodigosPlaza">
+            <EntityTypeMapping TypeName="SARHModel.CATACodigosPlaza">
+              <MappingFragment StoreEntitySet="CATACodigosPlaza">
+                <ScalarProperty Name="SueldoBruto" ColumnName="SueldoBruto" />
+                <ScalarProperty Name="idFiltroPuestoClave" ColumnName="idFiltroPuestoClave" />
+                <ScalarProperty Name="Compensacion" ColumnName="Compensacion" />
+                <ScalarProperty Name="SueldoBase" ColumnName="SueldoBase" />
+                <ScalarProperty Name="NivelPlaza" ColumnName="NivelPlaza" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idCATACodigosPlaza" ColumnName="idCATACodigosPlaza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATAEstatus">
+            <EntityTypeMapping TypeName="SARHModel.CATAEstatus">
+              <MappingFragment StoreEntitySet="CATAEstatus">
+                <ScalarProperty Name="DescripcionEstatus" ColumnName="DescripcionEstatus" />
+                <ScalarProperty Name="idCATAEstatus" ColumnName="idCATAEstatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATAEstatusPlaza">
+            <EntityTypeMapping TypeName="SARHModel.CATAEstatusPlaza">
+              <MappingFragment StoreEntitySet="CATAEstatusPlaza">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="idCATAEstatusPlaza" ColumnName="idCATAEstatusPlaza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATAMotivoBaja">
+            <EntityTypeMapping TypeName="SARHModel.CATAMotivoBaja">
+              <MappingFragment StoreEntitySet="CATAMotivoBaja">
+                <ScalarProperty Name="MotivoBaja" ColumnName="MotivoBaja" />
+                <ScalarProperty Name="idCATAMotivoBaja" ColumnName="idCATAMotivoBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATAMovimientos">
+            <EntityTypeMapping TypeName="SARHModel.CATAMovimientos">
+              <MappingFragment StoreEntitySet="CATAMovimientos">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="idTipoMovimiento" ColumnName="idTipoMovimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATANivelPuesto">
+            <EntityTypeMapping TypeName="SARHModel.CATANivelPuesto">
+              <MappingFragment StoreEntitySet="CATANivelPuesto">
+                <ScalarProperty Name="idCATACategoria" ColumnName="idCATACategoria" />
+                <ScalarProperty Name="DescripcionNivelPuesto" ColumnName="DescripcionNivelPuesto" />
+                <ScalarProperty Name="idCATANivelPuesto" ColumnName="idCATANivelPuesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATANombreEscuela">
+            <EntityTypeMapping TypeName="SARHModel.CATANombreEscuela">
+              <MappingFragment StoreEntitySet="CATANombreEscuela">
+                <ScalarProperty Name="DescripcionNombreEscuela" ColumnName="DescripcionNombreEscuela" />
+                <ScalarProperty Name="idCATANombreEscuela" ColumnName="idCATANombreEscuela" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATAParents">
+            <EntityTypeMapping TypeName="SARHModel.CATAParents">
+              <MappingFragment StoreEntitySet="CATAParents">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="idCATAParents" ColumnName="idCATAParents" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATAPuestos">
+            <EntityTypeMapping TypeName="SARHModel.CATAPuestos">
+              <MappingFragment StoreEntitySet="CATAPuestos">
+                <ScalarProperty Name="idCATATipoNivelPuesto" ColumnName="idCATATipoNivelPuesto" />
+                <ScalarProperty Name="DescripcionPuesto" ColumnName="DescripcionPuesto" />
+                <ScalarProperty Name="idCATANivelPuesto" ColumnName="idCATANivelPuesto" />
+                <ScalarProperty Name="NombrePuesto" ColumnName="NombrePuesto" />
+                <ScalarProperty Name="idCATAPuestos" ColumnName="idCATAPuestos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATASituacionAcademica">
+            <EntityTypeMapping TypeName="SARHModel.CATASituacionAcademica">
+              <MappingFragment StoreEntitySet="CATASituacionAcademica">
+                <ScalarProperty Name="DescripcionSituacionAcademica" ColumnName="DescripcionSituacionAcademica" />
+                <ScalarProperty Name="idCATASituacionAcademica" ColumnName="idCATASituacionAcademica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATATipoCorreo">
+            <EntityTypeMapping TypeName="SARHModel.CATATipoCorreo">
+              <MappingFragment StoreEntitySet="CATATipoCorreo">
+                <ScalarProperty Name="DescripcionTipoCorreo" ColumnName="DescripcionTipoCorreo" />
+                <ScalarProperty Name="idCATATipoCorreo" ColumnName="idCATATipoCorreo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATATipoModulo">
+            <EntityTypeMapping TypeName="SARHModel.CATATipoModulo">
+              <MappingFragment StoreEntitySet="CATATipoModulo">
+                <ScalarProperty Name="idCATAEstatus" ColumnName="idCATAEstatus" />
+                <ScalarProperty Name="DescripcionTipoModulo" ColumnName="DescripcionTipoModulo" />
+                <ScalarProperty Name="idCATATipoModulo" ColumnName="idCATATipoModulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATATipoMovimientoBitacora">
+            <EntityTypeMapping TypeName="SARHModel.CATATipoMovimientoBitacora">
+              <MappingFragment StoreEntitySet="CATATipoMovimientoBitacora">
+                <ScalarProperty Name="DescripcionTipoMovBitacora" ColumnName="DescripcionTipoMovBitacora" />
+                <ScalarProperty Name="idCATATipoMovimientoBitacora" ColumnName="idCATATipoMovimientoBitacora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATATipoNivelPuesto">
+            <EntityTypeMapping TypeName="SARHModel.CATATipoNivelPuesto">
+              <MappingFragment StoreEntitySet="CATATipoNivelPuesto">
+                <ScalarProperty Name="DescripcionNivelPuesto" ColumnName="DescripcionNivelPuesto" />
+                <ScalarProperty Name="idCATATipoNivelPuesto" ColumnName="idCATATipoNivelPuesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATATipoPlaza">
+            <EntityTypeMapping TypeName="SARHModel.CATATipoPlaza">
+              <MappingFragment StoreEntitySet="CATATipoPlaza">
+                <ScalarProperty Name="TipoPlaza" ColumnName="TipoPlaza" />
+                <ScalarProperty Name="idCATATipoPlaza" ColumnName="idCATATipoPlaza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATATipoPlazaNuevo">
+            <EntityTypeMapping TypeName="SARHModel.CATATipoPlazaNuevo">
+              <MappingFragment StoreEntitySet="CATATipoPlazaNuevo">
+                <ScalarProperty Name="DescripcionTipoPlazaN" ColumnName="DescripcionTipoPlazaN" />
+                <ScalarProperty Name="idCATATipoPlazaNuevo" ColumnName="idCATATipoPlazaNuevo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATATipoTelefono">
+            <EntityTypeMapping TypeName="SARHModel.CATATipoTelefono">
+              <MappingFragment StoreEntitySet="CATATipoTelefono">
+                <ScalarProperty Name="DescripcionTipoTelefono" ColumnName="DescripcionTipoTelefono" />
+                <ScalarProperty Name="idCATATipoTelefono" ColumnName="idCATATipoTelefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Correos">
+            <EntityTypeMapping TypeName="SARHModel.Correos">
+              <MappingFragment StoreEntitySet="Correos">
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="idCATAEstatus" ColumnName="idCATAEstatus" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="idCATATipoCorreo" ColumnName="idCATATipoCorreo" />
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+                <ScalarProperty Name="idCorreo" ColumnName="idCorreo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatosCredencialInstitucional">
+            <EntityTypeMapping TypeName="SARHModel.DatosCredencialInstitucional">
+              <MappingFragment StoreEntitySet="DatosCredencialInstitucional">
+                <ScalarProperty Name="idCATAEstatusCredencial" ColumnName="idCATAEstatusCredencial" />
+                <ScalarProperty Name="idCATAAñoResello" ColumnName="idCATAAñoResello" />
+                <ScalarProperty Name="TieneResello" ColumnName="TieneResello" />
+                <ScalarProperty Name="CodigoAcceso" ColumnName="CodigoAcceso" />
+                <ScalarProperty Name="idCATAAñoVigencia" ColumnName="idCATAAñoVigencia" />
+                <ScalarProperty Name="idCATAPuestos" ColumnName="idCATAPuestos" />
+                <ScalarProperty Name="NoGafete" ColumnName="NoGafete" />
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+                <ScalarProperty Name="idDatosCredencialInstitucional" ColumnName="idDatosCredencialInstitucional" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialAltasBajasPersonas">
+            <EntityTypeMapping TypeName="SARHModel.HistorialAltasBajasPersonas">
+              <MappingFragment StoreEntitySet="HistorialAltasBajasPersonas">
+                <ScalarProperty Name="idCATAMotivoBaja" ColumnName="idCATAMotivoBaja" />
+                <ScalarProperty Name="idCATAEstatusRegistro" ColumnName="idCATAEstatusRegistro" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+                <ScalarProperty Name="idHistorialAltasBajasPersonas" ColumnName="idHistorialAltasBajasPersonas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialPerPlazas">
+            <EntityTypeMapping TypeName="SARHModel.HistorialPerPlazas">
+              <MappingFragment StoreEntitySet="HistorialPerPlazas">
+                <ScalarProperty Name="idDireccionArea" ColumnName="idDireccionArea" />
+                <ScalarProperty Name="FechaDesasignacion" ColumnName="FechaDesasignacion" />
+                <ScalarProperty Name="estatusHistorialPerPlazasActual" ColumnName="estatusHistorialPerPlazasActual" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="Funciones" ColumnName="Funciones" />
+                <ScalarProperty Name="CargoFuncional" ColumnName="CargoFuncional" />
+                <ScalarProperty Name="idTipoMovimiento" ColumnName="idTipoMovimiento" />
+                <ScalarProperty Name="idCATAAreasFuncionales" ColumnName="idCATAAreasFuncionales" />
+                <ScalarProperty Name="fechaAsignacionPlaza" ColumnName="fechaAsignacionPlaza" />
+                <ScalarProperty Name="idPlazas" ColumnName="idPlazas" />
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+                <ScalarProperty Name="idHistorialPerPlazas" ColumnName="idHistorialPerPlazas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NumeroContacto">
+            <EntityTypeMapping TypeName="SARHModel.NumeroContacto">
+              <MappingFragment StoreEntitySet="NumeroContacto">
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="idCATAEstatus" ColumnName="idCATAEstatus" />
+                <ScalarProperty Name="idCataTipoTelefono" ColumnName="idCataTipoTelefono" />
+                <ScalarProperty Name="NumeroTelefonico" ColumnName="NumeroTelefonico" />
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+                <ScalarProperty Name="idNumeroContacto" ColumnName="idNumeroContacto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermisosModulo">
+            <EntityTypeMapping TypeName="SARHModel.PermisosModulo">
+              <MappingFragment StoreEntitySet="PermisosModulo">
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="idCATAEstatus" ColumnName="idCATAEstatus" />
+                <ScalarProperty Name="idCATATipoModulo" ColumnName="idCATATipoModulo" />
+                <ScalarProperty Name="TipoAccion" ColumnName="TipoAccion" />
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+                <ScalarProperty Name="idPermisosModulo" ColumnName="idPermisosModulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personal">
+            <EntityTypeMapping TypeName="SARHModel.Personal">
+              <MappingFragment StoreEntitySet="Personal">
+                <ScalarProperty Name="idCATAParents" ColumnName="idCATAParents" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
+                <ScalarProperty Name="idCATAEstatus" ColumnName="idCATAEstatus" />
+                <ScalarProperty Name="fechaIngresoInstitucion" ColumnName="fechaIngresoInstitucion" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+                <ScalarProperty Name="Homoclave" ColumnName="Homoclave" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalNew">
+            <EntityTypeMapping TypeName="SARHModel.PersonalNew">
+              <MappingFragment StoreEntitySet="PersonalNew">
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="idPersonaNew" ColumnName="idPersonaNew" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plazas">
+            <EntityTypeMapping TypeName="SARHModel.Plazas">
+              <MappingFragment StoreEntitySet="Plazas">
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idCATAEstatusPlaza" ColumnName="idCATAEstatusPlaza" />
+                <ScalarProperty Name="ClavePresupuestal" ColumnName="ClavePresupuestal" />
+                <ScalarProperty Name="CargoEstructura" ColumnName="CargoEstructura" />
+                <ScalarProperty Name="idCATACodigosPlaza" ColumnName="idCATACodigosPlaza" />
+                <ScalarProperty Name="idCATAPuestos" ColumnName="idCATAPuestos" />
+                <ScalarProperty Name="numeroPlaza" ColumnName="numeroPlaza" />
+                <ScalarProperty Name="idPlazas" ColumnName="idPlazas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SARHModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATADirecionesArea">
+            <EntityTypeMapping TypeName="SARHModel.CATADirecionesArea">
+              <MappingFragment StoreEntitySet="CATADirecionesArea">
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="idCATAAreasFuncional" ColumnName="idCATAAreasFuncional" />
+                <ScalarProperty Name="DA_Iniciales" ColumnName="DA_Iniciales" />
+                <ScalarProperty Name="DA_Nombre" ColumnName="DA_Nombre" />
+                <ScalarProperty Name="idDireccionArea" ColumnName="idDireccionArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATANivelEstudios">
+            <EntityTypeMapping TypeName="SARHModel.CATANivelEstudios">
+              <MappingFragment StoreEntitySet="CATANivelEstudios">
+                <ScalarProperty Name="ExigeFechaFin" ColumnName="ExigeFechaFin" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="ControlRegistroHistorial" ColumnName="ControlRegistroHistorial" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="idCATANivelEstudios" ColumnName="idCATANivelEstudios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialAcademico">
+            <EntityTypeMapping TypeName="SARHModel.HistorialAcademico">
+              <MappingFragment StoreEntitySet="HistorialAcademico">
+                <ScalarProperty Name="idCATASituacionAcademica" ColumnName="idCATASituacionAcademica" />
+                <ScalarProperty Name="idCATANombreEscuela" ColumnName="idCATANombreEscuela" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="FechaConcluye" ColumnName="FechaConcluye" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="idCATACarreras" ColumnName="idCATACarreras" />
+                <ScalarProperty Name="idCATANivelEstudios" ColumnName="idCATANivelEstudios" />
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+                <ScalarProperty Name="idHistorialAcademico" ColumnName="idHistorialAcademico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_DetallePersonal">
+            <EntityTypeMapping TypeName="SARHModel.V_DetallePersonal">
+              <MappingFragment StoreEntitySet="V_DetallePersonal">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha Registro" />
+                <ScalarProperty Name="Fecha_Ingreso_Institución" ColumnName="Fecha Ingreso Institución" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+                <ScalarProperty Name="Homoclave" ColumnName="Homoclave" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Fecha_de_Nacimiento" ColumnName="Fecha de Nacimiento" />
+                <ScalarProperty Name="Nombre_Completo" ColumnName="Nombre Completo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_PlazasVacantes">
+            <EntityTypeMapping TypeName="SARHModel.V_PlazasVacantes">
+              <MappingFragment StoreEntitySet="V_PlazasVacantes">
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="idCATAEstatusPlaza" ColumnName="idCATAEstatusPlaza" />
+                <ScalarProperty Name="ClavePresupuestal" ColumnName="ClavePresupuestal" />
+                <ScalarProperty Name="CargoEstructura" ColumnName="CargoEstructura" />
+                <ScalarProperty Name="SueldoBruto" ColumnName="SueldoBruto" />
+                <ScalarProperty Name="Compensacion" ColumnName="Compensacion" />
+                <ScalarProperty Name="SueldoBase" ColumnName="SueldoBase" />
+                <ScalarProperty Name="NivelPlaza" ColumnName="NivelPlaza" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idCATACodigosPlaza" ColumnName="idCATACodigosPlaza" />
+                <ScalarProperty Name="NombrePuesto" ColumnName="NombrePuesto" />
+                <ScalarProperty Name="idCATAPuestos" ColumnName="idCATAPuestos" />
+                <ScalarProperty Name="numeroPlaza" ColumnName="numeroPlaza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_AltaPersonal2" FunctionName="SARHModel.Store.sp_AltaPersonal2" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

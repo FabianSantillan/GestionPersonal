@@ -1,0 +1,73 @@
+﻿@model SARH.Models.Clases.PlazasCE
+@{
+    ViewBag.Title = "PlazasAlta";
+}
+
+<h2>Alta de Plazas</h2>
+
+<div class="content">
+    <div class="row">
+        <label class="col-lg-2 text-lg-right">Número Plaza</label>
+        <div class="col-lg-4">
+            <div>
+                @Html.EditorFor(d => d.numeroPlaza, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <label class="col-lg-2 text-lg-right">Puesto</label>
+        <div class="col-lg-4">
+            <div>
+                @Html.DropDownList("Puesto", ViewBag.listPuesto as SelectList, "Selecciona una opción", new { @class = "form-control" })
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-2 text-lg-right" for="dropdownlistCodigoPlaza">Código Plaza</label>
+        <div class="col-lg-4">
+
+            @* @Html.DropDownList("CodigoPersonal", ViewBag.listcodigoPlaza as SelectList, "Selecciona una opción", new { @class = "form-control" })*@
+            <select class="form-control" onchange="getValue()" id="dropdownlistCodigoPlaza" name="dropdownlistCodigoPlaza" </select><br />
+            <input type="text" value="" id="show" </input>
+
+        </div>
+        <label class="col-lg-2 text-lg-right">Cargo Estructura</label>
+        <div class="col-lg-4">
+            <div>
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-2 text-lg-right">Clave Presupuestal</label>
+        <div class="col-lg-4">
+
+        </div>
+        <label class="col-lg-2 text-lg-right">Área Estructura</label>
+        <div class="col-lg-6">
+
+
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-2 text-lg-right">Sueldo Base</label>
+        <div class="col-lg-4">
+
+        </div>
+        <label class="col-lg-2 text-lg-right">Compensación</label>
+        <div class="col-lg-6">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-2 text-lg-right">Sueldo Bruto</label>
+        <div class="col-lg-4">
+        </div>
+    </div>
+    <br />
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/plazas.js"></script>

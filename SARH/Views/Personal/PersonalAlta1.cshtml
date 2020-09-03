@@ -1,0 +1,316 @@
+﻿
+@{
+    ViewBag.Title = "PersonalAlta1";
+}
+
+<h2>PersonalAlta1</h2>
+
+<hr />
+
+@using (Html.BeginForm())
+{
+    @*<div class="row">
+        <label class="col-lg-2 text-lg-right">Correo</label>
+        <div class="col-lg-4">
+            <div>
+                @Html.EditorFor(m => m.fechaIngresoInstitucion, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>*@
+
+
+    <div class="container">
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                        Datos Personales
+                    </a>
+                </div>
+                <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row">
+                            <label class="col-lg-2 text-lg-right">CURP</label>
+                            <div class="col-lg-6">
+                                @Html.EditorFor(m => m.CURP, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresa CURP", name = "CURP" } })
+                                @Html.ValidationMessageFor(m => m.CURP, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="submit" class="btn btn-info" value="Valida">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <label class="col-lg-2 text-lg-right">RFC</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    @Html.EditorFor(m => m.RFC, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(m => m.RFC, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <label class="col-lg-2 control-label text-lg-right">Homoclave</label>
+                            <div class="col-lg-2">
+                                @Html.EditorFor(m => m.Homoclave, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <label class="col-lg-2 text-lg-right">Nombres</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    @Html.EditorFor(m => m.nombres, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(m => m.nombres, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <label class="col-lg-2 text-lg-right">Apellido Paterno</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    @Html.EditorFor(m => m.apellidoPaterno, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(m => m.apellidoPaterno, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+
+                        <div class="row">
+                            <label class="col-lg-2 text-lg-right">Apellido Materno</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    @Html.EditorFor(m => m.ApellidoMaterno, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <label class="col-lg-2 text-lg-right">Fecha de Nacimiento</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    @Html.EditorFor(m => m.fechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <label class="col-lg-2 text-lg-right">Fecha Ingreso Institución</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    @Html.EditorFor(m => m.fechaIngresoInstitucion, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <label class="col-lg-2 text-lg-right">Situación Familiar</label>
+                            <div class="col-lg-4">
+                                <div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="idCATAParents" id="RdEsmama" value="2">
+                                        <label class="form-check-label" for="Radios2">Es mamá</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="idCATAParents" id="RdEspapa" value="4">
+                                        <label class="form-check-label" for="Radios4">Es papá</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <input type="submit" class="btn btn-facebook float-lg-right" value="Guardar" id="btnAlertMessage" />
+                    </div>
+                    <div style="color:#b91010">
+                        @ViewBag.Message
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                            Asignación de Plaza
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-lg-2 text-lg-right" for="dropdownlistCodigoPlaza">Número Plaza</label>
+                                <div class="col-lg-4">
+
+                                    @*<select class="form-control" onchange="getValue()" id="dropdownlistCodigoPlaza" name="dropdownlistCodigoPlaza" </select><br />
+                                        <input type="text" value="" id="show" </input>*@
+
+                                    @*@Html.DropDownList("NumeroPlazas", ViewBag.listNumeroPlaza as SelectList, "Selecciona una opción", new { @class = "form-control" })*@
+
+                                </div>
+                                @*<div class="col-lg-2">
+                                        <div>
+                                            <button type="submit" class="btn btn-info">Buscar</button>
+                                        </div>
+                                    </div>*@
+                            </div>
+                            <br />
+                            <div class="row">
+                                <label class="col-lg-2 text-lg-right">Puesto</label>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-offset-8">@Html.ViewBag.NombrePuesto </label>
+                                    </div>
+                                </div>
+                                <label class="col-lg-2 text-lg-right">Código de Plaza</label>
+                                <div class="col-lg-4">
+                                    <div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <label class="col-lg-2 text-lg-right">Nivel Plaza</label>
+                                <div class="col-lg-4">
+                                    <div>
+
+                                    </div>
+                                </div>
+                                <label class="col-lg-2 text-lg-right">Clave Presupuestal</label>
+                                <div class="col-lg-4">
+                                    <div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <label class="col-lg-2 text-lg-right">Sueldo Base</label>
+                                <div class="col-lg-4">
+                                    <div>
+
+                                    </div>
+                                </div>
+                                <label class="col-lg-2 text-lg-right">Compensación</label>
+                                <div class="col-lg-4">
+                                    <div>
+                                        hola
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <label class="col-lg-2 text-lg-right">Sueldo Bruto</label>
+                                <div class="col-lg-4">
+                                    <div>
+                                        hola
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                            Datos de Contacto
+                        </a>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-lg-2 text-lg-right">Correo electrónico</label>
+                                <div class="col-lg-4">
+                                </div>
+                                <label class="col-lg-2 text-lg-right">Tipo correo</label>
+                                <div class="col-lg-4">
+                                    <div>
+                                        @*  @Html.DropDownList("TipoCorreo", ViewBag.listTipoCorreo as SelectList, "Selecciona una opción", new { @class = "form-control" })*@
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <label class="col-lg-2 text-lg-right">Número telefónico</label>
+                                <div class="col-lg-4">
+                                    <div>
+
+                                    </div>
+                                </div>
+                                <label class="col-lg-2 text-lg-right">Tipo Teléfono</label>
+                                <div class="col-lg-4">
+                                    <div>
+                                        @* @Html.DropDownList("TipoTelefono", ViewBag.listTipoTelefono as SelectList, "Selecciona una opción", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Plazas/GetData",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option Value="-1"> Selecciona una opción</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value ="' + data[i].NivelPlaza + '" >' + data[i].descripcion + '</option>';
+                    }
+                    $("#dropdownlistCodigoPlaza").html(s);
+                }
+            });
+        });
+
+        function getValue() {
+            var myVal = $("#dropdownlistCodigoPlaza").val();
+            $("#show").val(myVal);
+        }
+
+
+    </script>
+
+}
+
+
+@*<script src="~/bundles/jqueryval"></script>*@
+
+
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            alert("Prueba");
+
+            $('#table td:last-child:contains(2)').closest('tr').css('background-color', 'red');
+        });
+        $.validator.addMethod("CURP", function (value, element) {
+            if (value !== '') {
+                var patt = new RegExp("^[A-Z][A,E,I,O,U,X][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][M,H][A-Z]{2}[B,C,D,F,G,H,J,K,L,M,N,Ñ,P,Q,R,S,T,V,W,X,Y,Z]{3}[0-9,A-Z][0-9]$");
+                return patt.test(value);
+            } else {
+                return false;
+            }
+        }, "Ingrese una CURP valido");
+
+    </script>*@
+
+
+
+@*<script src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $.validator.addMethod("CURP", function (value, element) {
+            if (value !== '') {
+                var patt = new RegExp("^[A-Z][A,E,I,O,U,X][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][M,H][A-Z]{2}[B,C,D,F,G,H,J,K,L,M,N,Ñ,P,Q,R,S,T,V,W,X,Y,Z]{3}[0-9,A-Z][0-9]$");
+                return patt.test(value);
+            } else {
+                return false;
+            }
+        }, "Ingrese una CURP valido");
+    </script>*@

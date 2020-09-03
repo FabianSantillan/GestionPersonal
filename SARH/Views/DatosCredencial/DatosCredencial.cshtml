@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "DatosCredencial";
+}
+
+<h2>Datos Credencial</h2>
+<hr />
+<div>
+    <div class="row">
+        <label class="col-lg-2 text-lg-right">Nombre</label>
+        <div class="col-lg-6">
+            <input type="text" class="form-control">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-2 control-label text-lg-right">No Gafete</label>
+        <div class="col-lg-4">
+            <input type="text" class="form-control" placeholder="">
+        </div>
+        <label class="col-lg-2 control-label text-lg-right">Cargo</label>
+        <div class="col-lg-4">
+            <input type="text" class="form-control" placeholder="">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-2 control-label text-lg-right">Vigencia</label>
+        <div class="col-lg-4">
+            <input type="text" class="form-control" placeholder="">
+        </div>
+        <label class="col-lg-2 control-label text-lg-right">Código Acceso</label>
+        <div class="col-lg-4">
+            <input type="text" class="form-control" placeholder="">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-2 control-label text-lg-right">Tiene Resello</label>
+        <div class="col-lg-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="RadioResello" id="RdReselloSi" value="Sí">
+                <label class="form-check-label" for="Radios3">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="RadioResello" id="RdReselloNo" value="No">
+                <label class="form-check-label" for="Radios4">No</label>
+            </div>
+        </div>
+        <label class="col-lg-2 control-label text-lg-right">Año Resello</label>
+        <div class="col-lg-4">
+            <input type="date" name="Fecha">
+        </div>
+    </div>
+    <br />
+    <div class="col-lg-11">
+        <button type="button" class="btn btn-facebook float-lg-right">Guardar</button>
+    </div>
+</div>

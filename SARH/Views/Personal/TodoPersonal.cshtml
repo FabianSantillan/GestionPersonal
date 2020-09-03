@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "TodoPersonal";
+}
+
+<h2>Todo Personal</h2>
+
+<hr />
+
+<link href="~/Content/datatables.css" rel="stylesheet" />
+
+
+<div id="tabla" class="table-responsive">
+    <table id="tableAllPerson" class="table table-bordered dt-responsive nowrap">
+        <thead>
+            <tr>
+                <td>Nombre Completo</td>
+                <td>Fecha Nacimiento</td>
+                <td>RFC</td>
+                <td>Homoclave</td>
+                <td>CURP</td>
+                <td>Sexo</td>
+                <td>Fecha Ingreso Institucion</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/datatables.min.js"></script>*@
+@*<script src="~/Scripts/Personal.js"></script>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/Personal_scripts")
+}

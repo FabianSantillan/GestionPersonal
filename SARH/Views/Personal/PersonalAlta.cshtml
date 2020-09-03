@@ -1,0 +1,166 @@
+﻿@model SARH.Models.Clases.PersonalCE
+
+
+@{
+    ViewBag.Title = "PersonalAlta";
+}
+
+<h2>Personal Alta</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+<div>
+    <div class="container">
+        <div class="row">
+            <label class="col-lg-2 text-lg-right">CURP</label>
+            <div class="col-lg-6">
+                @Html.EditorFor(m => m.CURP, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresa CURP", name = "CURP" } })
+                @Html.ValidationMessageFor(m => m.CURP, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-lg-2">
+                <input type="submit" class="btn btn-info" value="Valida">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-lg-2 text-lg-right">RFC</label>
+            <div class="col-lg-4">
+                <div>
+                    @Html.EditorFor(m => m.RFC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.RFC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <label class="col-lg-2 control-label text-lg-right">Homoclave</label>
+            <div class="col-lg-2">
+                @Html.EditorFor(m => m.Homoclave, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <label class="col-lg-2 text-lg-right">Nombres</label>
+            <div class="col-lg-4">
+                <div>
+                    @Html.EditorFor(m => m.nombres, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.nombres, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <label class="col-lg-2 text-lg-right">Apellido Paterno</label>
+            <div class="col-lg-4">
+                <div>
+                    @Html.EditorFor(m => m.apellidoPaterno, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.apellidoPaterno, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <br />
+
+
+        <div class="row">
+            <label class="col-lg-2 text-lg-right">Apellido Materno</label>
+            <div class="col-lg-4">
+                <div>
+                    @Html.EditorFor(m => m.ApellidoMaterno, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <label class="col-lg-2 text-lg-right">Fecha de Nacimiento</label>
+            <div class="col-lg-4">
+                <div>
+                    @Html.EditorFor(m => m.fechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <label class="col-lg-2 text-lg-right">Fecha Ingreso Institución</label>
+            <div class="col-lg-4">
+                <div>
+                    @Html.EditorFor(m => m.fechaIngresoInstitucion, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <label class="col-lg-2 text-lg-right">Situación Familiar</label>
+            <div class="col-lg-4">
+                <div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="idCATAParents" id="RdEsmama" value="2">
+                        <label class="form-check-label" for="Radios2">Es mamá</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="idCATAParents" id="RdEspapa" value="4">
+                        <label class="form-check-label" for="Radios4">Es papá</label>
+                    </div>
+                </div>
+            </div>      
+        </div>
+        <br />
+
+        <div class="row">
+            <label class="col-lg-2 text-lg-right">Correo electrónico</label>
+            <div class="col-lg-4">
+            </div>
+            <label class="col-lg-2 text-lg-right">Tipo correo</label>
+            <div class="col-lg-4">
+                <div>
+                   @Html.DropDownList("TipoCorreo", ViewBag.listTipoCorreo as SelectList, "Selecciona una opción", new { @class = "form-control" })
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-lg-2 text-lg-right">Número telefónico</label>
+            <div class="col-lg-4">
+                <div>
+
+                </div>
+            </div>
+            <label class="col-lg-2 text-lg-right">Tipo Teléfono</label>
+            <div class="col-lg-4">
+                <div>
+                   @Html.DropDownList("TipoTelefono", ViewBag.listTipoTelefono as SelectList, "Selecciona una opción", new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <br />
+        <input type="submit" class="btn btn-facebook float-lg-right" value="Guardar" id="btnAlertMessage" />
+        <div style="color:#b91010">
+            @ViewBag.Message
+        </div>
+    </div>
+ </div>
+}
+
+@section Scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Plazas/GetData",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option Value="-1"> Selecciona una opción</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value ="' + data[i].NivelPlaza + '" >' + data[i].descripcion + '</option>';
+                    }
+                    $("#dropdownlistCodigoPlaza").html(s);
+                }
+            });
+        });
+
+        function getValue() {
+            var myVal = $("#dropdownlistCodigoPlaza").val();
+            $("#show").val(myVal);
+        }
+
+
+    </script>
+
+}
+

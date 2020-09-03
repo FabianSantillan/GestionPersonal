@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "TipoCorreo";
+}
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>*@
+<h2>Tipo Correo</h2>
+<hr>
+<div class="container">
+    <a href="#seccion" class="btn btn-primary" data-toggle="collapse">Mostrar/Ocultar </a>
+    <div class="collapse" id="seccion">
+        <br />
+        <div class="well">
+            <p>Esto solo es una prueba</p>
+        </div>
+    </div>
+    <br /><br />
+
+    @* */Acordeon/**@
+
+    <div class="panel-group" id="accordion" role="tablist">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading1">
+                <h4 class="panel-title">
+                    <a href="#collapse1" data-toggle="collapse" data-parent="#accordion">Encabezado</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @Html.DropDownList("TipoCorreo", ViewBag.listTipoCorreo as SelectList, "Selecciona una opción", new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*</div>*@
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading2">
+                    <h4 class="panel-title">
+                        <a href="#collapse2" data-toggle="collapse" data-parent="#accordion">Encabezado Dos</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>Esto solo es una prueba</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<script src="http://code-jquery.com/jquery-latest.js"></script>
+        <script src="https://maxcdn.bootstrapcdn/bootstrap/3.3.4/js/bootstrap.min.js"></script>*@
+</div>
+

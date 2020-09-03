@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e564b8414e2c4d4599ae5a7ae8d596dc" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="SARHModel.CATAAños" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SARHModel.CATAAreasEstructural" Width="1.5" PointX="3" PointY="15.125" />
+        <EntityTypeShape EntityType="SARHModel.CATAAreasFuncional" Width="1.5" PointX="3" PointY="21.25" />
+        <EntityTypeShape EntityType="SARHModel.CATACarreras" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="SARHModel.CATACategoria" Width="1.5" PointX="10" PointY="5.875" />
+        <EntityTypeShape EntityType="SARHModel.CATACodigosPlaza" Width="1.5" PointX="5.75" PointY="17.375" />
+        <EntityTypeShape EntityType="SARHModel.CATAEstatus" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="SARHModel.CATAEstatusPlaza" Width="1.5" PointX="5.75" PointY="1.75" />
+        <EntityTypeShape EntityType="SARHModel.CATAMotivoBaja" Width="1.5" PointX="8.75" PointY="9.375" />
+        <EntityTypeShape EntityType="SARHModel.CATAMovimientos" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SARHModel.CATANivelPuesto" Width="1.5" PointX="12.25" PointY="6" />
+        <EntityTypeShape EntityType="SARHModel.CATANombreEscuela" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SARHModel.CATAParents" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SARHModel.CATAPuestos" Width="1.5" PointX="5.75" PointY="5.5" />
+        <EntityTypeShape EntityType="SARHModel.CATASituacionAcademica" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SARHModel.CATATipoCorreo" Width="1.5" PointX="3.75" PointY="2.375" />
+        <EntityTypeShape EntityType="SARHModel.CATATipoModulo" Width="1.5" PointX="3" PointY="18.5" />
+        <EntityTypeShape EntityType="SARHModel.CATATipoMovimientoBitacora" Width="1.5" PointX="8.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SARHModel.CATATipoNivelPuesto" Width="1.5" PointX="10.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SARHModel.CATATipoPlaza" Width="1.5" PointX="12.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SARHModel.CATATipoPlazaNuevo" Width="1.5" PointX="7.75" PointY="6.125" />
+        <EntityTypeShape EntityType="SARHModel.CATATipoTelefono" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="SARHModel.Correos" Width="1.5" PointX="6" PointY="9.75" />
+        <EntityTypeShape EntityType="SARHModel.DatosCredencialInstitucional" Width="1.5" PointX="13.75" PointY="8.75" />
+        <EntityTypeShape EntityType="SARHModel.HistorialAltasBajasPersonas" Width="1.5" PointX="11" PointY="9" />
+        <EntityTypeShape EntityType="SARHModel.HistorialPerPlazas" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SARHModel.NumeroContacto" Width="1.5" PointX="3" PointY="9.75" />
+        <EntityTypeShape EntityType="SARHModel.PermisosModulo" Width="1.5" PointX="5.25" PointY="13.75" />
+        <EntityTypeShape EntityType="SARHModel.Personal" Width="1.5" PointX="14.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SARHModel.PersonalNew" Width="1.5" PointX="14.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SARHModel.Plazas" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="SARHModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SARHModel.CATADirecionesArea" Width="1.5" PointX="15.75" PointY="8.75" />
+        <EntityTypeShape EntityType="SARHModel.CATANivelEstudios" Width="1.5" PointX="9.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SARHModel.HistorialAcademico" Width="1.5" PointX="11.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SARHModel.V_DetallePersonal" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SARHModel.V_PlazasVacantes" Width="1.5" PointX="16.75" PointY="12.75" />
+        <AssociationConnector Association="SARHModel.FK_CATAAreasEstructurales_idCATAEstatus" />
+        <AssociationConnector Association="SARHModel.FK_CATAAreasFuncionales_idCATAEstatus" />
+        <AssociationConnector Association="SARHModel.FK_CATACarreras_idCATAEstatus" />
+        <AssociationConnector Association="SARHModel.FK_CATACategoria_idCATATipoPlazaNuevo" />
+        <AssociationConnector Association="SARHModel.FK_CATANivelPuesto_idCATACategoria" />
+        <AssociationConnector Association="SARHModel.FK_Plazas_CATACodigosPlaza" />
+        <AssociationConnector Association="SARHModel.FK_CATATipoModulo_idCATAEstatus" />
+        <AssociationConnector Association="SARHModel.FK_Correos_idCATAEstatus" />
+        <AssociationConnector Association="SARHModel.FK_NumeroContacto_idCATAEstatus" />
+        <AssociationConnector Association="SARHModel.FK_PermisosModulo_idCATAEstatus" />
+        <AssociationConnector Association="SARHModel.FK_Plazas_CATAEstatusPlaza" />
+        <AssociationConnector Association="SARHModel.FK_HistorialAltasBajas_idCATAMotivoBaja" />
+        <AssociationConnector Association="SARHModel.FK_Plazas_CATAPuestos" />
+        <AssociationConnector Association="SARHModel.FK_Correos_idCATATipoCorreo" />
+        <AssociationConnector Association="SARHModel.FK_PermisosModulo_idCATATipoModulo" />
+        <AssociationConnector Association="SARHModel.FK_NumeroContacto_idCataTipoTelefono" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

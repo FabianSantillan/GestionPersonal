@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "CatalogoCorreo";
+
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+}
+
+<h2>CatalogoCorreo</h2>
+
+<div class="row">
+
+    <div class="col-lg-6">
+
+        @Html.DropDownList("datos",items,"Selecciona una opción", new { @class= "form-control" })
+
+    </div>
+
+
+</div>
